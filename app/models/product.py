@@ -10,7 +10,6 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    name = db.Column(db.String, nullable=False)
     price= db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(255), nullable=False)
