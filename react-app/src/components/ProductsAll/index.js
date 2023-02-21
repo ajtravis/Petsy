@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkAllproducts } from '../../store/product';
+import ProductCard from '../ProductCard';
 
 
 
@@ -14,7 +15,17 @@ export default function ManyProducts(){
 
 return allProducts && (
     <div>
-
+        {Object.values(allProducts).length ? Object.values(allProducts).map(product =>
+            <>
+                <div>
+                    <ProductCard product={product} />
+                </div>
+            </>
+            ) :
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
+                    <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>Oops! Something Went Wrong!</h1>
+                </div>
+            }
     </div>
 )
 }
