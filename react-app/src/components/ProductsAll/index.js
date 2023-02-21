@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkAllproducts } from '../../store/product';
 import ProductCard from '../ProductCard';
-
+import '../../CSS/allProducts.css'
 
 
 export default function ManyProducts(){
@@ -14,7 +14,7 @@ export default function ManyProducts(){
     }, [dispatch]);
 
 return allProducts && (
-    <div>
+    <div className='card-gallery'>
         {Object.values(allProducts).length ? Object.values(allProducts).map(product =>
             <>
                 <div>
