@@ -11,3 +11,8 @@ def all_products():
     """
     products = Product.query.all()
     return {'products': [product.to_dict() for product in products]}
+
+@product_routes.route('/<int:id>')
+def get_one_product(id):
+    product = Product.query.get(id)
+    return product.to_dict()
