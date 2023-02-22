@@ -25,5 +25,5 @@ def my_products():
     """
     Query for all users and returns them in a list of user dictionaries
     """
-    products = Product.query.filter(Product.seller_id == current_user.id)
+    products = Product.query.filter(Product.seller_id == current_user.id).all()
     return {'my_products': [product.to_dict() for product in products]}

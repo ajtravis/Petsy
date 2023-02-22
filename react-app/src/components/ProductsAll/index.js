@@ -10,13 +10,14 @@ export default function ManyProducts(){
     const dispatch = useDispatch()
     const allProducts = useSelector(state => state.products)
     const oneProduct = useSelector(state => state.products.oneProduct)
+    const myProducts = useSelector(state => state.products.myProducts)
     useEffect(() => {
         dispatch(thunkAllproducts());
     }, [dispatch]);
     const productList = Object.values(allProducts)
     // if oneProduct is in state, remove it from product list
     if(oneProduct) productList.pop()
-
+    if(myProducts) productList.pop()
 return productList && (
     <div className='card-gallery'>
         {productList.length ? productList.map(product =>
