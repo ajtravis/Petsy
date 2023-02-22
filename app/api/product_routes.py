@@ -44,8 +44,16 @@ def add_product():
             description=form.data['description'],
             image=form.data['image']
         )
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!", newProduct)
         db.session.add(newProduct)
         db.session.commit()
         return newProduct.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# delete a product that you own
+@product_routes.route('/<int:id>/', methods = ['DELETE'])
+@login_required
+def delete_prod(id):
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+    return {"message": f'product with id {product.id} successfully deleted'}
