@@ -18,7 +18,7 @@ function ProductFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-        const data = await dispatch(thunkCreateProduct(name, price, description, image));
+        const data = await dispatch(thunkCreateProduct({name, price, description, image}));
         if (data) {
           setErrors(data)
         } else {
