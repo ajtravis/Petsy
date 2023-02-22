@@ -1,6 +1,7 @@
 const ALL_PRODUCTS = '/products/ALL_PRODUCTS'
 const ONE_PRODUCT = '/products/ONE_PRODUCT'
 const MY_PRODUCTS = '/products/MY_PRODUCTS'
+const ADD_PRODUCT = '/products/ADD_PRODUCT'
 
 const allProducts = (products) => ({
 	type: ALL_PRODUCTS,
@@ -16,6 +17,11 @@ const myProducts = (products) => ({
 	type: MY_PRODUCTS,
 	products,
 });
+
+const addProduct = (product) => ({
+	type: ADD_PRODUCT,
+	product,
+})
 
 export const thunkAllproducts = () => async (dispatch) => {
 	const response = await fetch('/api/products/all', {
@@ -71,6 +77,28 @@ export const thunkMyproducts = () => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
+export const thunkCreateProduct = (form) => async (dispatch) => {
+	// console.log(form)
+	const response = await fetch('/api/products/new', {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(form)
+	})
+	// console.log(response, 'this is respond from backend')
+	if (response.ok) {
+		const data = await response.json();
+		// console.log(data, '!!just came from backend')
+		dispatch(addProduct(data));
+		return null
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		// console.log(data, 'ERROR STUFF')
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
+
 const initialState = {}
 export default function productsReducer(state = initialState, action) {
 	let newState = { ...state }
@@ -90,6 +118,10 @@ export default function productsReducer(state = initialState, action) {
 			// console.log(all)
 			newState["myProducts"] = my
 			return newState;
+		case ADD_PRODUCT:
+			let add = action.product
+			// console.log(add, 'this is the reducer')
+			newState[add.id] = add
         default:
             return state;
     }

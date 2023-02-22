@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import ManyProducts from "./components/ProductsAll";
 import OneProduct from "./components/ProductOne";
 import MyProducts from "./components/ProductsMy";
+import ProductFormPage from "./components/ProductForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/products/new'>
+            <ProductFormPage />
           </Route>
           <Route path='/products/:id'>
             <OneProduct />

@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product
+from app.models import Product, db
+from app.forms import ProductForm
+from app.api.auth_routes import validation_errors_to_error_messages
 
 product_routes = Blueprint('products', __name__)
 
@@ -27,3 +29,23 @@ def my_products():
     """
     products = Product.query.filter(Product.seller_id == current_user.id).all()
     return {'my_products': [product.to_dict() for product in products]}
+
+# post a new product listing
+@product_routes.route('/new', methods=['POST'])
+@login_required
+def add_product():
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        newProduct = Product(
+            name=form.data['name'],
+            seller_id=current_user.id,
+            price=form.data['price'],
+            description=form.data['description'],
+            image=form.data['image']
+        )
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!", newProduct)
+        db.session.add(newProduct)
+        db.session.commit()
+        return newProduct.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
