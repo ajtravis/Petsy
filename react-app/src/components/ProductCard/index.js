@@ -4,6 +4,7 @@ import OpenModalButton from "../OpenModalButton"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
+import '../../CSS/productCard.css'
 
 export default function ProductCard({product}) {
     const history = useHistory()
@@ -21,9 +22,12 @@ export default function ProductCard({product}) {
         history.push(`products/${product.id}/edit`)
     }
 
+    const handleClick = () => {
+        history.push(`products/${product.id}`)
+    }
 return(
     <>
-        <div>
+        <div className="card" onClick={handleClick}>
             <img src={product?.image} />
         </div>
         <div>{product?.name}</div>

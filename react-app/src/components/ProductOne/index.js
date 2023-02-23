@@ -19,8 +19,11 @@ return (
     <div>
         { oneProduct?
         <>
-        <div> {oneProduct?.name} </div>
-        <img src={oneProduct.image} />
+        <div className='column'>
+            <img src={oneProduct.image} />
+        </div>
+        <div className='column'>
+        </div>
         </>
              :
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
