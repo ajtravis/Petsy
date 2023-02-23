@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-image: url("https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif");
 }
 
 #home-button{
@@ -20,10 +21,16 @@
   font-family: 'Lora', serif;
   font-weight: bold;
   cursor: pointer;
+  padding-top: 20px;
 }
 
 .menu{
   cursor: pointer;
+}
+
+.nav-left{
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-right{
@@ -33,4 +40,19 @@
 
 .nav-right > * {
   margin: 20px;
+}
+
+.image-container{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.prints{
+  width: auto;
+  height: 100px;
+
+}
+
+.head{
+  color: orange;
 }

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
+import '../../CSS/oneProduct.css'
 
 
 

@@ -16,11 +16,15 @@ function Navigation({ isLoaded }){
 		<div className='nav-container'>
 			<div className='nav-left'>
 				<div id='home-button' onClick={handleClick}>pEtsy</div>
+				{/* <div className='image-container'>
+					<img className='prints' src='https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif' />
+				</div> */}
 			</div>
+
 			{isLoaded && (
 				<div className='nav-right'>
 					<ProfileButton user={sessionUser} />
-					<i class="fa-solid fa-cart-shopping fa-3x"></i>
+					<i class="head fa-solid fa-cart-shopping fa-3x"></i>
 				</div>
 			)}
 		</div>
