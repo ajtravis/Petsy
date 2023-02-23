@@ -57,3 +57,25 @@ def delete_prod(id):
     db.session.delete(product)
     db.session.commit()
     return {"message": f'product with id {product.id} successfully deleted'}
+
+# update a product that you have listed
+@product_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_product(id):
+    # print('asdkjasdjkasda')
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print(form.data, 'bbb!^!^!^!^!^!^^!^!^!^^!^!^!^!^^!^!^!^!^!^')
+    # print(current_user, current_user.id, '@^@^@^@^@^^@^@^@^@^@^^@^@^^@^@^@^^@@')
+    if form.validate_on_submit():
+        product = Product.query.get(id)
+        product.name=form.data['name']
+        product.seller_id=current_user.id
+        product.price=form.data['price']
+        product.description=form.data['description']
+        product.image=form.data['image']
+
+        db.session.commit()
+        return product.to_dict()
+    # print(form.errors, 'bbb&#&#&#&#&#&#&#&#&#&#&&#&#&#&#&#&#&&#')
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
