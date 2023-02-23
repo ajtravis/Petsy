@@ -21,7 +21,7 @@
   font-family: 'Lora', serif;
   font-weight: bold;
   cursor: pointer;
-  padding-top: 20px;
+  margin-left: 270px;
 }
 
 .menu{
@@ -36,6 +36,7 @@
 .nav-right{
   display: flex;
   justify-content: space-between;
+  margin-left: 170px;
 }
 
 .nav-right > * {
