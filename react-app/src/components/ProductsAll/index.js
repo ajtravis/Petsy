@@ -19,18 +19,20 @@ export default function ManyProducts(){
     if(oneProduct) productList.pop()
     if(myProducts) productList.pop()
 return productList && (
+    <div id='page'>
     <div className='card-gallery'>
         {productList.length ? productList.map(product =>
-            <>
-                <div>
+            <div>
+                <div className='card-container'>
                     <ProductCard product={product} />
                 </div>
-            </>
+            </div>
             ) :
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
                     <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>Oops! Something Went Wrong!</h1>
                 </div>
             }
+    </div>
     </div>
 )
 }

@@ -6,10 +6,10 @@ import { thunkEditProduct, thunkOneProduct } from "../../store/product";
 
 
 
-function ProductEditFormPage() {
+function ProductEditFormPage({product}) {
   const dispatch = useDispatch();
   const { id } = useParams()
-  const product = useSelector(state => state.products.oneProduct)
+  // const product = useSelector(state => state.products.oneProduct)
   const [name, setName] = useState(product?.name);
   const [price, setPrice] = useState(product?.price);
   const [description, setDescription] = useState(product?.description);

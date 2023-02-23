@@ -1,5 +1,6 @@
-import { thunkDeleteProduct, thunkMyproducts, thunkAllproducts, thunkEditProduct } from "../../store/product"
+import { thunkDeleteProduct, thunkMyproducts, thunkAllproducts, thunkOneProduct } from "../../store/product"
 import ProductEditFormPage from "../ProductEditForm"
+import OpenModalButton from "../OpenModalButton"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
@@ -15,16 +16,27 @@ export default function ProductCard({product}) {
         dispatch(thunkAllproducts())
     }
 
+    const handleEdit = () => {
+        dispatch(thunkOneProduct(product.id))
+        history.push(`products/${product.id}/edit`)
+    }
+
 return(
     <>
-        <div>{product?.name}</div>
         <div>
             <img src={product?.image} />
         </div>
+        <div>{product?.name}</div>
+        <div>${product.price}</div>
         <div>{product?.seller_id == user.id? (
         <div>
             <div onClick={handleDelete}>delete</div>
-            <Link to={`products/${product.id}/edit`}>Edit</Link>
+            <div>
+                <OpenModalButton
+                buttonText="Edit"
+                modalComponent={<ProductEditFormPage product={product} />}
+                />
+            </div>
         </div>
         ): null}</div>
     </>
