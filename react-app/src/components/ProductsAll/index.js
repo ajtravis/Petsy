@@ -24,7 +24,7 @@ return productList && (
         {productList.length ? productList.map(product =>
             <div>
                 <div className='card-container'>
-                    <ProductCard product={product} />
+                    <ProductCard product={product} location={'home-page'}/>
                 </div>
             </div>
             ) :

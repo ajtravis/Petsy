@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
 import '../../CSS/productCard.css'
 
-export default function ProductCard({product}) {
+export default function ProductCard({product, location}) {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
@@ -32,7 +32,7 @@ return(
         </div>
         <div>{product?.name}</div>
         <div>${product.price}</div>
-        <div>{product?.seller_id == user.id? (
+        <div>{(product?.seller_id == user.id) && location !== 'home-page'? (
         <div>
             <div onClick={handleDelete}>delete</div>
             <div>

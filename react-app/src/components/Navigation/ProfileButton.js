@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import ProductFormPage from "../ProductForm";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -34,6 +37,11 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
+  const myListings = () => {
+    history.push('/my-products')
+  };
+
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -47,8 +55,16 @@ function ProfileButton({ user }) {
           <>
             <li>{user.first_name} {user.last_name}</li>
             <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li className="button">
+              <OpenModalButton
+              buttonText="List a Product"
+              onItemClick={closeMenu}
+              modalComponent={<ProductFormPage />}
+              />
+            </li>
+            <li className="button" onClick={myListings}>My Listings</li>
+            <li className="button" onClick={handleLogout}>
+                Log Out
             </li>
           </>
         ) : (
