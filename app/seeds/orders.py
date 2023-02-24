@@ -5,18 +5,22 @@ from app.models import db, Order, environment, SCHEMA
 def seed_orders():
     o1 = Order(
         user_id=1,
+        closed=False,
         amount=8.98
         )
     o2 = Order(
-        user_id=1,
+        user_id=4,
+        closed=False,
         amount=15.98
         )
     o3 = Order(
         user_id=3,
+        closed=False,
         amount=12.99
         )
     o4 = Order(
         user_id=2,
+        closed=False,
         amount=59.90
         )
     db.session.add(o1)

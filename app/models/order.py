@@ -10,6 +10,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
+    closed = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     # relationships
@@ -21,5 +22,6 @@ class Order(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'amount': self.amount,
+            'closed': self.closed,
             'created_at': self.created_at
         }
