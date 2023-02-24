@@ -32,7 +32,7 @@ return(
         </div>
         <div>{product?.name}</div>
         <div>${product.price}</div>
-        <div>{(product?.seller_id == user.id) && location !== 'home-page'? (
+        <div>{(product?.seller_id == user?.id) && location !== 'home-page'? (
         <div>
             <div onClick={handleDelete}>delete</div>
             <div>

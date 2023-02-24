@@ -76,3 +76,15 @@
 .button{
   cursor: pointer;
 }
+
+.modal-button{
+  display: block;
+  width:100%;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* padding: 10px; */
+}
+
+.modal-button:hover{
+  cursor: pointer;
+}
