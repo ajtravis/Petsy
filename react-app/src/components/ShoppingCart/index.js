@@ -12,7 +12,7 @@ export default function MyCart(){
     const cartItems = useSelector(state => state.cart.items)
     const order = useSelector(state => state.cart.order)
     const cartItemsL= Object.values(cartItems)
-    let total = Math.floor(order?.amount * 100) / 100 + 0.01
+    let total = order?.amount
 
     if (total < 0 || total == 0.01) total = 0;
 
