@@ -62,6 +62,6 @@ def update_item(id):
         order.amount += change * product.price
 
         db.session.commit()
-        return {'item': item.to_dict(), 'order': order.to_dict()}
+        return item.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

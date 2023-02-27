@@ -76,6 +76,27 @@ export const thunkDeleteItem = (id) => async (dispatch) => {
 	}
 	else return { errors: ["An error occurred. Please try again."] }
 }
+export const thunkEditItem = (form, id) => async (dispatch) => {
+	console.log(form)
+	const response = await fetch(`/api/cart/update/${id}/`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(form)
+	})
+	console.log(response, 'this is respond from backend')
+	if (response.ok) {
+		const data = await response.json();
+		console.log(data, '!!just came from backend')
+		dispatch(addCart(data));
+		return null
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		// console.log(data, 'ERROR STUFF')
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
 
 const initialState = {order: {}, items: {}}
 export default function cartReducer(state = initialState, action) {
@@ -84,7 +105,6 @@ export default function cartReducer(state = initialState, action) {
 		case MY_CART:
 			let cart = action.cart
 			let items = cart.cart_items
-
 			newState.order = cart.order
 			items.forEach(item => {
 				newState.items[item.id] = item
