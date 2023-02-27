@@ -12,6 +12,7 @@ export default function MyCart(){
     const cartItems = useSelector(state => state.cart.items)
     const order = useSelector(state => state.cart.order)
 
+
     useEffect(() => {
         dispatch(thunkMyCart());
     }, [dispatch]);
@@ -20,7 +21,7 @@ export default function MyCart(){
 return (
    <div>
     <h2>Your Cart:</h2>
-    <div>Total: {order?.amount}</div>
+    <div>Total: {Math.floor(order?.amount * 100) / 100}</div>
     {cartItems? cartItems?.map(item =>
         <div>
             <CartCard item={item} />
