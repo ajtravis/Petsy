@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Order, Cart_Item, Product, db
-from app.forms import ProductForm
+from app.forms import ItemForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
 cart_routes = Blueprint('cart', __name__)
@@ -46,3 +46,22 @@ def remove_item(id):
     db.session.commit()
 
     return {"message": f'product with id {product.id} successfully deleted'}
+
+@cart_routes.route('/update/<int:id>/', methods = ['PUT'])
+@login_required
+def update_item(id):
+    form = ItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+        item = Cart_Item.query.get(id)
+        product = Product.query.get(item.product_id)
+        num = item.quantity
+        item.quantity=form.data['quantity']
+        change = num - item.quantity
+        order.amount += change * product.price
+
+        db.session.commit()
+        return {'item': item.to_dict(), 'order': order.to_dict()}
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
