@@ -77,7 +77,7 @@ export const thunkDeleteItem = (id) => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
-const initialState = {}
+const initialState = {order: {}, items: {}}
 export default function cartReducer(state = initialState, action) {
 	let newState = { ...state }
 	switch (action.type) {
@@ -85,16 +85,14 @@ export default function cartReducer(state = initialState, action) {
 			let cart = action.cart
 			let items = cart.cart_items
 
-			newState["order"] = cart.order
-			newState["items"] = []
+			newState.order = cart.order
 			items.forEach(item => {
 				newState.items[item.id] = item
 			});
 			return newState;
 		case ADD_ITEM:
 			let item = action.item
-			let l = newState.items.length
-			newState.items.push(item)
+			newState.items[item.id] = item
 			return newState;
 		case REMOVE_ITEM:
 			delete newState.items[action.id]
