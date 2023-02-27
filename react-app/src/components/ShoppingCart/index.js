@@ -12,6 +12,9 @@ export default function MyCart(){
     const cartItems = useSelector(state => state.cart.items)
     const order = useSelector(state => state.cart.order)
     const cartItemsL= Object.values(cartItems)
+    let total = Math.floor(order?.amount * 100) / 100 + 0.01
+
+    if (total < 0 || total == 0.01) total = 0;
 
     useEffect(() => {
         dispatch(thunkMyCart());
@@ -21,7 +24,7 @@ export default function MyCart(){
 return (
    <div>
     <h2>Your Cart:</h2>
-    <div>Total: {Math.floor(order?.amount * 100) / 100}</div>
+    <div>Total: ${total}</div>
     {cartItemsL? cartItemsL?.map(item =>
         <div>
             <CartCard item={item} />
