@@ -25,13 +25,5 @@ class Cart_Item(db.Model):
             'order_id': self.order_id,
             'created_at': self.created_at,
             'product': self.item_product.to_dict(),
-        }
-
-    def info(self):
-        return {
-            'id': self.id,
-            'product_id': self.product_id,
-            'quantity': self.quantity,
-            'order_id': self.order_id,
-            'created_at': self.created_at,
+            'order': self.item_order.to_dict()
         }

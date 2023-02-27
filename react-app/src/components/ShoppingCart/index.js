@@ -9,7 +9,7 @@ import { thunkMyCart } from '../../store/cart';
 export default function MyCart(){
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart.items)
-    console.log("cart items: ", cartItems)
+    const order = useSelector(state => state.cart.order)
 
     useEffect(() => {
         dispatch(thunkMyCart());
@@ -19,6 +19,7 @@ export default function MyCart(){
 return (
    <div>
     <h2>Your Cart:</h2>
+    <div>Total: {order?.amount}</div>
     {cartItems? cartItems?.map(item =>
         <>
             <div>

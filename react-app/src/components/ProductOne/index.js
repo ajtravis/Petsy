@@ -20,6 +20,7 @@ export default function OneProduct(){
     const addToCart = () => {
         dispatch(thunkMyCart())
         dispatch(thunkAddCart(oneProduct?.id))
+        dispatch(thunkMyCart())
     }
 
 return (

@@ -21,6 +21,8 @@ def get_cart():
 @login_required
 def add_cart(id):
     order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    product = Product.query.get(id)
+    order.amount += product.price
     new_item = Cart_Item(
         product_id=id,
         quantity=1,
