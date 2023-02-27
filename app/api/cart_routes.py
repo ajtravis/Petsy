@@ -32,3 +32,17 @@ def add_cart(id):
     db.session.commit()
 
     return new_item.to_dict()
+
+# remove a product from your cart
+@cart_routes.route('/delete/<int:id>/', methods = ['DELETE'])
+@login_required
+def remove_item(id):
+    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    item = Cart_Item.query.get(id)
+    product = Product.query.get(item.product_id)
+    order.amount -= (product.price * item.quantity)
+
+    db.session.delete(item)
+    db.session.commit()
+
+    return {"message": f'product with id {product.id} successfully deleted'}
