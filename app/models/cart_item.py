@@ -23,5 +23,6 @@ class Cart_Item(db.Model):
             'product_id': self.product_id,
             'quantity': self.quantity,
             'order_id': self.order_id,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'product': self.item_product.to_dict(),
         }

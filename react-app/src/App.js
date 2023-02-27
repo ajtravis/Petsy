@@ -9,7 +9,8 @@ import ManyProducts from "./components/ProductsAll";
 import OneProduct from "./components/ProductOne";
 import MyProducts from "./components/ProductsMy";
 import ProductFormPage from "./components/ProductForm";
-import ProductEditFormPage from "./components/ProductEditForm";
+import ProductEditFormPage from "./components/ProductEditForm"
+import MyCart from "./components/ShoppingCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/my-cart">
+            <MyCart />
           </Route>
           <Route path='/products/new'>
             <ProductFormPage />

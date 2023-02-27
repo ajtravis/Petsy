@@ -11,6 +11,9 @@ function Navigation({ isLoaded }){
 	const handleClick = () => {
 		history.push('/')
 	}
+	const cartClick = () => {
+		history.push('/my-cart')
+	}
 
 	return (
 		<div className='nav-container'>
@@ -24,7 +27,7 @@ function Navigation({ isLoaded }){
 			{isLoaded && (
 				<div className='nav-right'>
 					<ProfileButton user={sessionUser} />
-					<i class="head fa-solid fa-cart-shopping fa-3x"></i>
+					<i onClick={cartClick} class="head fa-solid fa-cart-shopping fa-3x button"></i>
 				</div>
 			)}
 		</div>
