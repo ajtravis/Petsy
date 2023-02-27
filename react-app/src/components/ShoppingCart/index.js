@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { thunkMyCart } from '../../store/cart';
+import { thunkMyCart, thunkDeleteItem } from '../../store/cart';
+import CartCard from '../ShoppingCartCard';
 
 
 
@@ -21,11 +22,9 @@ return (
     <h2>Your Cart:</h2>
     <div>Total: {order?.amount}</div>
     {cartItems? cartItems?.map(item =>
-        <>
-            <div>
-                {item.product.name}
-            </div>
-        </>
+        <div>
+            <CartCard item={item} />
+        </div>
         ) :
         <div>Your cart is empty.</div>}
    </div>
