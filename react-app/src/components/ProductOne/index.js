@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
+import { thunkAddCart, thunkMyCart } from '../../store/cart';
 import '../../CSS/oneProduct.css'
 
 
@@ -16,6 +17,11 @@ export default function OneProduct(){
 
     const oneProduct = useSelector(state => state.products.oneProduct)
 
+    const addToCart = () => {
+        dispatch(thunkMyCart())
+        dispatch(thunkAddCart(oneProduct?.id))
+    }
+
 return (
     <div>
         { oneProduct?
@@ -27,7 +33,7 @@ return (
             <div id='price'>${oneProduct.price}</div>
             <div id='desc'>{oneProduct.description}</div>
             <div className='bu'>Buy it now</div>
-            <div className='bu cart'>Add to cart</div>
+            <div className='bu cart' onClick={addToCart}>Add to cart</div>
         </div>
         </div>
              :
