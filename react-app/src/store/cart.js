@@ -2,6 +2,7 @@ const MY_CART = '/MY_CART'
 const ADD_ITEM = '/ADD_ITEM'
 const REMOVE_ITEM = '/REMOVE_ITEM'
 const UPDATE_QUANTITY = '/UPDATE_QUANTITY'
+const CHECKOUT = '/CHECKOUT'
 
 const myCart = (cart) => ({
 	type: MY_CART,
@@ -21,6 +22,11 @@ const removeItem = (id) => ({
 const updateItem = (item) => ({
 	type: UPDATE_QUANTITY,
 	item
+})
+
+const checkout = (order) => ({
+	type: CHECKOUT,
+	order
 })
 
 
@@ -104,6 +110,23 @@ export const thunkEditItem = (form, id) => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
+export const thunkCheckout = () => async (dispatch) => {
+	const response = await fetch('/api/cart/checkout', {
+		headers: { "Content-Type": "application/json" },
+	})
+	// console.log(response)
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(checkout(data));
+		return response
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
+
 const initialState = {order: {}, items: {}}
 export default function cartReducer(state = initialState, action) {
 	let newState = { ...state }
@@ -122,6 +145,10 @@ export default function cartReducer(state = initialState, action) {
 			return newState;
 		case REMOVE_ITEM:
 			delete newState.items[action.id]
+			return newState
+		case CHECKOUT:
+			newState.order = action.order
+			newState.items = {}
 			return newState
         default:
             return state;

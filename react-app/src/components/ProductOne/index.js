@@ -10,6 +10,7 @@ import '../../CSS/oneProduct.css'
 export default function OneProduct(){
     const dispatch = useDispatch()
     const { id } = useParams()
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(thunkOneProduct(id));
@@ -18,9 +19,14 @@ export default function OneProduct(){
     const oneProduct = useSelector(state => state.products.oneProduct)
 
     const addToCart = () => {
+        if(!user){
+            window.alert("Please log in first")
+        }
+        else{
         dispatch(thunkMyCart())
         dispatch(thunkAddCart(oneProduct?.id))
         dispatch(thunkMyCart())
+        }
     }
 
 return (

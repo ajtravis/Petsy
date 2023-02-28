@@ -10,7 +10,10 @@ cart_routes = Blueprint('cart', __name__)
 @cart_routes.route('/')
 @login_required
 def get_cart():
-    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     cart_items = Cart_Item.query.filter(Cart_Item.order_id == order.id).all()
     return {
         'cart_items': [item.to_dict() for item in cart_items],
@@ -20,7 +23,10 @@ def get_cart():
 @cart_routes.route('/add/<int:id>', methods = ['POST'])
 @login_required
 def add_cart(id):
-    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     product = Product.query.get(id)
     order.amount += product.price
     new_item = Cart_Item(
@@ -66,3 +72,17 @@ def update_item(id):
         return item.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@cart_routes.route('/checkout')
+@login_required
+def checkout():
+    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    order.closed = True
+    new_order = Order(
+        user_id=current_user.id,
+        amount=0.00,
+        closed=False
+    )
+    db.session.add(new_order)
+    db.session.commit()
+    return new_order.to_dict()
