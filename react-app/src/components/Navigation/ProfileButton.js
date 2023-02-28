@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
+import { login } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -40,6 +41,10 @@ function ProfileButton({ user }) {
   const myListings = () => {
     history.push('/my-products')
   };
+
+  const demoLogin = () => {
+    dispatch(login("demo@aa.io", "password"))
+  }
 
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -80,6 +85,8 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+
+            <div className="demo" onClick={demoLogin}>Demo Login</div>
           </>
         )}
       </ul>

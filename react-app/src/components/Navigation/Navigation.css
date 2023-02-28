@@ -88,3 +88,9 @@
 .modal-button:hover{
   cursor: pointer;
 }
+
+.demo{
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
