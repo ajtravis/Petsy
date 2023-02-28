@@ -43,7 +43,10 @@ def add_cart(id):
 @cart_routes.route('/delete/<int:id>/', methods = ['DELETE'])
 @login_required
 def remove_item(id):
-    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     item = Cart_Item.query.get(id)
     product = Product.query.get(item.product_id)
     order.amount -= (product.price * item.quantity)
@@ -59,7 +62,10 @@ def update_item(id):
     form = ItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+        user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+        for o in user_orders:
+            if o.closed == False:
+                order = o
         item = Cart_Item.query.get(id)
         product = Product.query.get(item.product_id)
         num = item.quantity
