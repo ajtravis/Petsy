@@ -65,8 +65,7 @@ def edit_product(id):
     # print('asdkjasdjkasda')
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print(form.data, 'bbb!^!^!^!^!^!^^!^!^!^^!^!^!^!^^!^!^!^!^!^')
-    # print(current_user, current_user.id, '@^@^@^@^@^^@^@^@^@^@^^@^@^^@^@^@^^@@')
+
     if form.validate_on_submit():
         product = Product.query.get(id)
         product.name=form.data['name']
@@ -77,5 +76,4 @@ def edit_product(id):
 
         db.session.commit()
         return product.to_dict()
-    # print(form.errors, 'bbb&#&#&#&#&#&#&#&#&#&#&&#&#&#&#&#&#&&#')
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

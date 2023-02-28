@@ -129,7 +129,7 @@ export const thunkDeleteProduct = (id) => async (dispatch) => {
 }
 
 export const thunkEditProduct = (form, id) => async (dispatch) => {
-	console.log(form)
+	// console.log(form)
 	const response = await fetch(`/api/products/${id}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
