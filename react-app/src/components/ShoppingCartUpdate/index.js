@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkEditItem } from "../../store/cart";
+import { thunkEditItem, thunkMyCart } from "../../store/cart";
 
 function EditQuantity({item}) {
   const dispatch = useDispatch();
@@ -11,8 +11,9 @@ function EditQuantity({item}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    item.quantity = quantity
-    const data = await dispatch(thunkEditItem({item}, item?.id));
+    console.log("item", item)
+    const data = await dispatch(thunkEditItem({quantity}, item?.id));
+    dispatch(thunkMyCart())
     if (data) {
       setErrors(data);
     }
@@ -21,15 +22,42 @@ function EditQuantity({item}) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>
-            Quantity:
-          <input
-            type="number"
-            value={quantity}
+        Quantity
+        <select
             onChange={(e) => setQuantity(e.target.value)}
             required
-          />
-        </label>
+        >
+            <option
+                value='1'
+                selected={item.quantity == 1}>
+                1
+            </option>
+            <option
+                value='2'
+                selected={item.quantity == 2}>
+                2
+            </option>
+            <option
+                value='3'
+                selected={item.quantity == 3}>
+                3
+            </option>
+            <option
+                value='4'
+                selected={item.quantity == 4}>
+                4
+            </option>
+            <option
+                value='5'
+                selected={item.quantity == 5}>
+                5
+            </option>
+            <option
+                value='6'
+                selected={item.quantity == 6}>
+                6
+            </option>
+        </select>
         <button type="submit">Update</button>
       </form>
     </>

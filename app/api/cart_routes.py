@@ -57,10 +57,11 @@ def update_item(id):
         item = Cart_Item.query.get(id)
         product = Product.query.get(item.product_id)
         num = item.quantity
-        item.quantity=form.data['quantity']
-        change = num - item.quantity
-        order.amount += change * product.price
-
+        item.quantity = int(form.data['quantity'])
+        if num < item.quantity:
+            order.amount += product.price * (item.quantity - num)
+        else:
+            order.amount -= product.price * (num - item.quantity)
         db.session.commit()
         return item.to_dict()
 

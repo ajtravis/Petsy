@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField
-from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import Product
+from wtforms import SelectField
+from wtforms.validators import DataRequired
+
 
 class ItemForm(FlaskForm):
-    quantity = IntegerField('quantity', validators=[DataRequired()])
+    quantity = SelectField('quantity', choices=range(1,7), validators=[DataRequired()])
