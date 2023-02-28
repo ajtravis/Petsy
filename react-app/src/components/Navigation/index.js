@@ -12,7 +12,10 @@ function Navigation({ isLoaded }){
 		history.push('/')
 	}
 	const cartClick = () => {
-		history.push('/my-cart')
+		if(sessionUser){
+			history.push('/my-cart')
+		}
+		else window.alert("Must be signed in to view your cart.")
 	}
 
 	return (
