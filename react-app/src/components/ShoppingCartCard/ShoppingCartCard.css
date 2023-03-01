@@ -1,0 +1,29 @@
+.cart-card{
+    display: flex;
+    width: 500px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+
+}
+
+#item-name{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+
+}
+
+.item-details > * {
+    margin: 10px;
+}
+
+#delete-button{
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 40px;
+    width:150px;
+}
+
+#delete-button:hover{
+    background-color: rgba(128, 128, 128, 0.3);
+}

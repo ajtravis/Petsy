@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { thunkMyCart } from '../../store/cart';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded, num }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory()
 	const dispatch = useDispatch()

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkMyCart, thunkDeleteItem, thunkCheckout } from '../../store/cart';
 import CartCard from '../ShoppingCartCard';
-
+import './ShoppingCart.css'
 
 
 
@@ -27,11 +27,11 @@ export default function MyCart(){
     }
 
 return (
-   <div>
-    <h2>Your Cart:</h2>
+   <div className='cart-page'>
+    <div className='cart-head'>{cartItemsL?.length} items in your cart</div>
     <div>Total: ${total}</div>
     {cartItemsL.length? cartItemsL?.map(item =>
-        <div>
+        <div className='card-div'>
             <CartCard item={item} />
         </div>
         ) :
