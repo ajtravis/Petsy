@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkCreateProduct } from "../../store/product";
+import '../../CSS/ProductModal.css'
 
 
 function ProductFormPage() {
@@ -29,7 +30,7 @@ function ProductFormPage() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="product-form" onSubmit={handleSubmit}>
         <label>
           Product Name
           <input

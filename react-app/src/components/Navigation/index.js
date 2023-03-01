@@ -34,9 +34,6 @@ function Navigation({ isLoaded, num }){
 		<div className='nav-container'>
 			<div className='nav-left'>
 				<div id='home-button' onClick={handleClick}>pEtsy</div>
-				{/* <div className='image-container'>
-					<img className='prints' src='https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif' />
-				</div> */}
 			</div>
 
 			{isLoaded && (

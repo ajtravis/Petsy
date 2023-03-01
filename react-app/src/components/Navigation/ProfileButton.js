@@ -36,9 +36,11 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/')
   };
 
   const myListings = () => {
+    closeMenu()
     history.push('/my-products')
   };
 
