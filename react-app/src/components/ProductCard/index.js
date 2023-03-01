@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
 import '../../CSS/productCard.css'
 
-export default function ProductCard({product, location}) {
+export default function ProductCard({ product, location }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
@@ -25,24 +25,27 @@ export default function ProductCard({product, location}) {
     const handleClick = () => {
         history.push(`products/${product.id}`)
     }
-return(
-    <>
-        <div className="card" onClick={handleClick}>
-            <img src={product?.image} />
-        </div>
-        <div>{product?.name}</div>
-        <div>${product.price}</div>
-        <div>{(product?.seller_id == user?.id) && location !== 'home-page'? (
-        <div>
-            <div onClick={handleDelete}>delete</div>
-            <div>
-                <OpenModalButton
-                buttonText="Edit"
-                modalComponent={<ProductEditFormPage product={product} />}
-                />
+    return (
+        <>
+            <div className="card" onClick={handleClick}>
+                <img src={product?.image} />
             </div>
-        </div>
-        ): null}</div>
-    </>
-)
+            <div className="card-header">
+                <div>{product?.name}</div>
+                <div>${product?.price}</div>
+            </div>
+            <div>{product?.description}</div>
+            <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
+                <div>
+                    <div onClick={handleDelete}>delete</div>
+                    <div>
+                        <OpenModalButton
+                            buttonText="Edit"
+                            modalComponent={<ProductEditFormPage product={product} />}
+                        />
+                    </div>
+                </div>
+            ) : null}</div>
+        </>
+    )
 }

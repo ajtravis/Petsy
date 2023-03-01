@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkEditProduct, thunkOneProduct } from "../../store/product";
-
+import '../../CSS/ProductModal.css'
 
 
 function ProductEditFormPage({product}) {
@@ -35,7 +35,7 @@ function ProductEditFormPage({product}) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className='product-form' onSubmit={handleSubmit}>
         <label>
           Product Name
           <input
