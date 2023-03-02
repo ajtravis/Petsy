@@ -28,7 +28,7 @@ return (
         </>
         ) :
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
-                <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>Oops! Something Went Wrong!</h1>
+                <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>No Products Listed!</h1>
             </div>
         }
 </div>

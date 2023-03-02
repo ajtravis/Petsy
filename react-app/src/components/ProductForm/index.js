@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { thunkCreateProduct } from "../../store/product";
+import { thunkCreateProduct, thunkMyproducts } from "../../store/product";
 import '../../CSS/ProductModal.css'
 
 
@@ -23,6 +23,7 @@ function ProductFormPage() {
         if (data) {
           setErrors(data)
         } else {
+            dispatch(thunkMyproducts())
             closeModal();
         }
 

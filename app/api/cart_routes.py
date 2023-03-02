@@ -82,7 +82,11 @@ def update_item(id):
 @cart_routes.route('/checkout')
 @login_required
 def checkout():
-    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    # order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     order.closed = True
     new_order = Order(
         user_id=current_user.id,

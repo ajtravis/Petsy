@@ -15,6 +15,7 @@ export default function ProductCard({ product, location }) {
         dispatch(thunkDeleteProduct(product.id))
         dispatch(thunkMyproducts())
         dispatch(thunkAllproducts())
+        window.alert("Product has been removed!")
     }
 
     const handleEdit = () => {
@@ -37,7 +38,7 @@ export default function ProductCard({ product, location }) {
             <div>{product?.description}</div>
             <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
                 <div>
-                    <div onClick={handleDelete}>delete</div>
+                    <div className="delete-button" onClick={handleDelete}>delete</div>
                     <div>
                         <OpenModalButton
                             buttonText="Edit"
