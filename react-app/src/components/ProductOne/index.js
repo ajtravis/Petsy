@@ -40,7 +40,7 @@ return (
         <div className='column-right'>
             <div id='price'>${oneProduct.price}</div>
             <div id='desc'>{oneProduct.description}</div>
-            <div className='bu'>Buy it now</div>
+            {/* <div className='bu'>Buy it now</div> */}
             <div className='bu cart' onClick={addToCart}>Add to cart</div>
         </div>
         </div>

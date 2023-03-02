@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 
 class ItemForm(FlaskForm):
-    quantity = SelectField('quantity', choices=range(1,7), validators=[DataRequired()])
+    quantity = SelectField('quantity', choices=range(1,13), validators=[DataRequired()])
