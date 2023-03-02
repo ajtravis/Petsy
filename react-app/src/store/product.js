@@ -175,6 +175,7 @@ export default function productsReducer(state = initialState, action) {
 			newState[add.id] = add
 		case REMOVE_PRODUCT:
 			delete newState[action.id]
+			// delete newState.myProducts
 			return newState
         default:
             return state;

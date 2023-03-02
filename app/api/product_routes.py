@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product, db
+from app.models import Product,Cart_Item, db
 from app.forms import ProductForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -54,6 +54,9 @@ def add_product():
 @login_required
 def delete_prod(id):
     product = Product.query.get(id)
+    cart_items = Cart_Item.query.filter(Cart_Item.product_id == id)
+    for item in cart_items:
+        db.session.delete(item)
     db.session.delete(product)
     db.session.commit()
     return {"message": f'product with id {product.id} successfully deleted'}

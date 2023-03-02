@@ -13,9 +13,9 @@ export default function ProductCard({ product, location }) {
 
     const handleDelete = () => {
         dispatch(thunkDeleteProduct(product.id))
-        dispatch(thunkMyproducts())
-        dispatch(thunkAllproducts())
-        window.alert("Product has been removed!")
+        .then(() => dispatch(thunkAllproducts()))
+        .then(() => dispatch(thunkMyproducts()))
+        // window.alert("Product has been removed!")
     }
 
     const handleEdit = () => {
@@ -28,9 +28,10 @@ export default function ProductCard({ product, location }) {
     }
     return (
         <>
-            <div className="card" onClick={handleClick}>
-                <img src={product?.image} />
-
+            <div className="card" >
+                <div onClick={handleClick}>
+                    <img src={product?.image} />
+                </div>
             <div className="card-header">
                 <div className="prod-head">{product?.name}</div>
                 <div className="prod-head">${product?.price}</div>
