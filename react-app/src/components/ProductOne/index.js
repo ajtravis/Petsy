@@ -26,6 +26,7 @@ export default function OneProduct(){
         dispatch(thunkMyCart())
         dispatch(thunkAddCart(oneProduct?.id))
         dispatch(thunkMyCart())
+        window.alert(`${oneProduct.name} was added to your cart!`)
         }
     }
 
