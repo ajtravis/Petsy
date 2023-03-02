@@ -26,6 +26,7 @@ export default function OneProduct(){
         dispatch(thunkMyCart())
         dispatch(thunkAddCart(oneProduct?.id))
         dispatch(thunkMyCart())
+        window.alert(`${oneProduct.name} was added to your cart!`)
         }
     }
 
@@ -39,7 +40,7 @@ return (
         <div className='column-right'>
             <div id='price'>${oneProduct.price}</div>
             <div id='desc'>{oneProduct.description}</div>
-            <div className='bu'>Buy it now</div>
+            {/* <div className='bu'>Buy it now</div> */}
             <div className='bu cart' onClick={addToCart}>Add to cart</div>
         </div>
         </div>

@@ -22,7 +22,6 @@ function EditQuantity({item}) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        Quantity
         <select
             onChange={(e) => setQuantity(e.target.value)}
             required
@@ -56,6 +55,36 @@ function EditQuantity({item}) {
                 value='6'
                 selected={item.quantity == 6}>
                 6
+            </option>
+            <option
+                value='7'
+                selected={item.quantity == 7}>
+                7
+            </option>
+            <option
+                value='8'
+                selected={item.quantity == 8}>
+                8
+            </option>
+            <option
+                value='9'
+                selected={item.quantity == 9}>
+                9
+            </option>
+            <option
+                value='10'
+                selected={item.quantity == 10}>
+                10
+            </option>
+            <option
+                value='11'
+                selected={item.quantity == 11}>
+                11
+            </option>
+            <option
+                value='12'
+                selected={item.quantity == 12}>
+                12
             </option>
         </select>
         <button type="submit">Update</button>

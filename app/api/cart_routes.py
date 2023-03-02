@@ -28,17 +28,27 @@ def add_cart(id):
         if o.closed == False:
             order = o
     product = Product.query.get(id)
-    order.amount += product.price
-    new_item = Cart_Item(
-        product_id=id,
-        quantity=1,
-        order_id=order.id
-    )
-    db.session.add(new_item)
-    db.session.commit()
-
-    return new_item.to_dict()
-
+    cart_items = Cart_Item.query.filter(Cart_Item.order_id == order.id).all()
+    old_item = None
+    for i in cart_items:
+        if i.product_id == product.id:
+            i.quantity += 1
+            order.amount += product.price
+            old_item = i
+            db.session.commit()
+    if (old_item == None):
+        order.amount += product.price
+        new_item = Cart_Item(
+            product_id=id,
+            quantity=1,
+            order_id=order.id
+        )
+        db.session.add(new_item)
+        db.session.commit()
+    if(old_item != None):
+        return old_item.to_dict()
+    else:
+        return new_item.to_dict()
 # remove a product from your cart
 @cart_routes.route('/delete/<int:id>/', methods = ['DELETE'])
 @login_required
@@ -82,7 +92,11 @@ def update_item(id):
 @cart_routes.route('/checkout')
 @login_required
 def checkout():
-    order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    # order = Order.query.filter(Order.user_id == current_user.id and Order.closed == False).first()
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     order.closed = True
     new_order = Order(
         user_id=current_user.id,

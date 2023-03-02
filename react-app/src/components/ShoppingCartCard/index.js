@@ -26,6 +26,7 @@ export default function CartCard({ item }) {
                 <div className="item-details">
                     <div id="item-name">{item?.product.name}</div>
                     <div>{item?.product.description}</div>
+                    <div>Quantity: {item?.quantity}</div>
                     <EditQuantity item={item} />
                     <div id="delete-button" onClick={handleDelete}>Remove</div>
                 </div>

@@ -1,4 +1,33 @@
 .card{
     cursor: pointer;
+    border: solid 1px aliceblue;
+
+
 }
 
+.delete-button{
+    cursor: pointer;
+}
+
+.card-header{
+    display: flex;
+    justify-content: center;
+}
+
+.prod-head{
+    padding:10px;
+}
+
+.owner-buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.owner-buttons > *{
+    font-size: 20px;
+    background-color: rgb(241, 100, 30);
+    color: white;
+    border-radius: 10px;
+    padding: 2px;
+}

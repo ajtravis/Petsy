@@ -15,6 +15,7 @@ export default function ProductCard({ product, location }) {
         dispatch(thunkDeleteProduct(product.id))
         dispatch(thunkMyproducts())
         dispatch(thunkAllproducts())
+        window.alert("Product has been removed!")
     }
 
     const handleEdit = () => {
@@ -29,23 +30,23 @@ export default function ProductCard({ product, location }) {
         <>
             <div className="card" onClick={handleClick}>
                 <img src={product?.image} />
-            </div>
+
             <div className="card-header">
-                <div>{product?.name}</div>
-                <div>${product?.price}</div>
+                <div className="prod-head">{product?.name}</div>
+                <div className="prod-head">${product?.price}</div>
             </div>
-            <div>{product?.description}</div>
             <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
-                <div>
-                    <div onClick={handleDelete}>delete</div>
+                <div className="owner-buttons">
+                    <div className="delete-button" onClick={handleDelete}>delete</div>
                     <div>
                         <OpenModalButton
-                            buttonText="Edit"
+                            buttonText="edit"
                             modalComponent={<ProductEditFormPage product={product} />}
                         />
                     </div>
                 </div>
             ) : null}</div>
+            </div>
         </>
     )
 }

@@ -9,6 +9,7 @@ import '../../CSS/ProductModal.css'
 function ProductEditFormPage({product}) {
   const dispatch = useDispatch();
   const { id } = useParams()
+  const { closeModal } = useModal()
   // const product = useSelector(state => state.products.oneProduct)
   const [name, setName] = useState(product?.name);
   const [price, setPrice] = useState(product?.price);
@@ -29,6 +30,7 @@ function ProductEditFormPage({product}) {
         } else {
             dispatch(thunkOneProduct(product?.id))
             history.push(`/products/${product?.id}`)
+            closeModal()
         }
 
   };
