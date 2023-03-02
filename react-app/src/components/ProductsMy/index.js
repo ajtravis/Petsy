@@ -6,7 +6,7 @@ import ProductCard from '../ProductCard';
 
 
 
-export default function MyProducts(){
+export default function MyProducts() {
     const dispatch = useDispatch()
     const myProducts = useSelector(state => state.products.myProducts)
     // const allProducts = useSelector(state => state.products)
@@ -18,19 +18,21 @@ export default function MyProducts(){
     // if oneProduct is in state, remove it from product list
     // if(oneProduct) productList.pop()
 
-return (
-    <div className='card-gallery'>
-    {myProducts?.length ? myProducts.map(product =>
-        <>
-            <div>
-                <ProductCard product={product} />
+    return (
+        <div id='page'>
+            <div className='card-gallery'>
+                {myProducts?.length ? myProducts.map(product =>
+                    <div>
+                        <div className='card-gallery'>
+                            <ProductCard product={product} />
+                        </div>
+                    </div>
+                ) :
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
+                        <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>No Products Listed!</h1>
+                    </div>
+                }
             </div>
-        </>
-        ) :
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
-                <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>No Products Listed!</h1>
-            </div>
-        }
-</div>
-)
+        </div>
+    )
 }

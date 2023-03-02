@@ -1,7 +1,7 @@
 .login {
     display: flex;
     flex-direction: column;
-    width:348px;
+    width:320px;
     height: auto;
 
 }
@@ -25,10 +25,16 @@
     height: 50px;
     cursor: pointer;
     width:300px;
+    margin-bottom: 10px;
 }
 
 .login > label {
     height: 50px;
     border-radius: 10px;
     margin: 10px;
+}
+
+#signup-head{
+    text-align: center;
+    font-size: 30px;
 }
