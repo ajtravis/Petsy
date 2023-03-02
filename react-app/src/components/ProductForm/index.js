@@ -64,7 +64,7 @@ function ProductFormPage() {
         <label>
           Image url
           <input
-            type="text"
+            type="url"
             value={image}
             onChange={(e) => setImage(e.target.value)}
             required
