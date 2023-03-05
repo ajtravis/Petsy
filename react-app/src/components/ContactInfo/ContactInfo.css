@@ -3,6 +3,12 @@
     width: 600px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:baseline;
     justify-content: space-evenly;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-info{
+    font-size: 15px;
+    padding: 10px;
 }
