@@ -20,16 +20,16 @@ export default function Footer() {
               />
             </div>
 
-            <div>
-                Backend
+            <div className="stack">
+                Backend:
                 <div>Flask</div>
                 <div>SqlAlchemy</div>
             </div>
-            <div>Frontend
+            <div className="stack">Frontend:
                 <div>React</div>
                 <div>Redux</div>
             </div>
-            <div onClick={handleHelp}>Help</div>
+            <div className="help-button" onClick={handleHelp}>Help</div>
         </div>
     )
 }
