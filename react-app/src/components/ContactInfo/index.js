@@ -8,16 +8,18 @@ export default function ContactInfo(){
 
     return(
         <div className="contact-container">
-            <div>
-                Please feel free to contact me:
+            <div style={{alignSelf: "center"}}>
+                Please feel free to contact me with any questions or feedback:
             </div>
-            <div>Github:
+            <div className="contact-info">
+                Github:
                 <a onClick={closeModal} href="https://github.com/ajtravis"> github.com/ajtravis</a>
             </div>
-            <div>LinkedIn:
+            <div className="contact-info">
+                LinkedIn:
                 <a onClick={closeModal} href="https://www.linkedin.com/in/alexander-james-travis/"> linkedin.com/in/alexander-james-travis</a>
             </div>
-            <div>
+            <div className="contact-info">
             email: ajtravis2@gmail.com
             </div>
         </div>

@@ -24,7 +24,8 @@ export default function Footer() {
             <div className="stack">
                 Backend:
                 <div>Flask</div>
-                <div>SqlAlchemy</div>
+                <div>SQLAlchemy</div>
+                <div>PostgresSQL</div>
             </div>
             <div className="stack">Frontend:
                 <div>React</div>
