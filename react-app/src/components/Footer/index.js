@@ -15,6 +15,7 @@ export default function Footer() {
         <div id="footer-container">
             <div>
             <OpenModalButton
+              location = "footer"
               buttonText="Contact Me"
               modalComponent={<ContactInfo />}
               />

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product,Cart_Item, db
+from app.models import Product, Cart_Item, Order, db
 from app.forms import ProductForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -55,7 +55,13 @@ def add_product():
 def delete_prod(id):
     product = Product.query.get(id)
     cart_items = Cart_Item.query.filter(Cart_Item.product_id == id)
+    user_orders = Order.query.filter(Order.user_id == current_user.id).all()
+    for o in user_orders:
+        if o.closed == False:
+            order = o
     for item in cart_items:
+        if item.order_id == order.id:
+            order.amount -= (item.quantity * product.price)
         db.session.delete(item)
     db.session.delete(product)
     db.session.commit()

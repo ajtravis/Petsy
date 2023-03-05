@@ -1,4 +1,5 @@
 import { thunkDeleteProduct, thunkMyproducts, thunkAllproducts, thunkOneProduct } from "../../store/product"
+import { thunkMyCart, thunkDeleteItem } from "../../store/cart"
 import ProductEditFormPage from "../ProductEditForm"
 import OpenModalButton from "../OpenModalButton"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,11 +11,21 @@ export default function ProductCard({ product, location }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    // const cart_items = useSelector(state => state.cart?.items)
+    // const cartList = Object.values(cart_items)
+    // let item = null
+    // cartList?.forEach(i => {
+    //     if(i.product_id === product.id){
+    //         item = i
+    //     }
+    // })
 
     const handleDelete = () => {
         dispatch(thunkDeleteProduct(product.id))
         .then(() => dispatch(thunkAllproducts()))
         .then(() => dispatch(thunkMyproducts()))
+        // .then(() => item ? dispatch(thunkDeleteItem(item.id)) : null)
+        .then(() => dispatch(thunkMyCart()))
         // window.alert("Product has been removed!")
     }
 
