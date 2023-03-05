@@ -11,7 +11,7 @@ import MyProducts from "./components/ProductsMy";
 import ProductFormPage from "./components/ProductForm";
 import ProductEditFormPage from "./components/ProductEditForm"
 import MyCart from "./components/ShoppingCart";
-
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +55,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

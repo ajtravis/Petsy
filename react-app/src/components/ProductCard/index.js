@@ -29,7 +29,7 @@ export default function ProductCard({ product, location }) {
     return (
         <>
             <div className="card" >
-                <div onClick={handleClick}>
+                <div className='card-image' onClick={handleClick}>
                     <img src={product?.image} />
                 </div>
             <div className="card-header">
