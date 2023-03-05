@@ -1,4 +1,4 @@
-.card{
+.card-image{
     cursor: pointer;
     border: solid 1px aliceblue;
 
@@ -7,6 +7,7 @@
 
 .delete-button{
     cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-header{
@@ -30,6 +31,6 @@
     color: white;
     border-radius: 15px;
     padding: 2px;
-    width:60px;
+    width:70px;
     text-align: center;
 }

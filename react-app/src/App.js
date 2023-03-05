@@ -11,7 +11,8 @@ import MyProducts from "./components/ProductsMy";
 import ProductFormPage from "./components/ProductForm";
 import ProductEditFormPage from "./components/ProductEditForm"
 import MyCart from "./components/ShoppingCart";
-
+import Footer from "./components/Footer";
+import HelpPage from "./components/HelpPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,11 +51,15 @@ function App() {
           <Route path="/my-products">
             <MyProducts />
           </Route>
+          <Route path="/help">
+            <HelpPage />
+          </Route>
           <Route exact path="/">
             <ManyProducts />
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
