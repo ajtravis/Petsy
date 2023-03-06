@@ -6,9 +6,16 @@
     align-items:baseline;
     justify-content: space-evenly;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:palegoldenrod;
+    font-size: 15px;
+    border-radius: 15px;
 }
 
 .contact-info{
-    font-size: 15px;
+    font-size: 18px;
     padding: 10px;
+}
+
+.contact-info > a{
+    color:green;
 }

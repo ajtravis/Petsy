@@ -1,6 +1,8 @@
+import './HelpPage.css'
+
 export default function HelpPage(){
     return(
-        <div>
+        <div className="help-page">
         <h3>About</h3>
         <p>Welcome to Petsy! Note: this project is purely for educational purposes.
             I worked on this project in order to practice my skills as a web developer. It functions
