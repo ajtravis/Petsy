@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkEditItem, thunkMyCart } from "../../store/cart";
 
@@ -8,9 +8,8 @@ function EditQuantity({item}) {
   const [errors, setErrors] = useState([]);
 
 
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("item", item)
     const data = await dispatch(thunkEditItem({quantity}, item?.id));
     dispatch(thunkMyCart())
@@ -19,16 +18,27 @@ function EditQuantity({item}) {
     }
   };
 
+  useEffect(() => {
+    return handleSubmit();
+}, [quantity]);
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form id="edit-form" onSubmit={handleSubmit}>
         <select
-            onChange={(e) => setQuantity(e.target.value)}
+            className="select-quant"
+            onChange={(e) =>
+                {
+                setQuantity(e.target.value)
+
+            }
+            }
             required
         >
             <option
                 value='1'
-                selected={item.quantity == 1}>
+                selected={item.quantity == 1}
+                >
                 1
             </option>
             <option
@@ -87,7 +97,7 @@ function EditQuantity({item}) {
                 12
             </option>
         </select>
-        <button type="submit">Update</button>
+        {/* <button className="update-button" type="submit">Update</button> */}
       </form>
     </>
   );

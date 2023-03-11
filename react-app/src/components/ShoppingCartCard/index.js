@@ -7,7 +7,7 @@ import './ShoppingCartCard.css'
 export default function CartCard({ item }) {
     const history = useHistory()
     const dispatch = useDispatch()
-
+    const itemTotal = Math.round(item?.product.price * item?.quantity * 100) / 100
 
     const handleDelete = () => {
         dispatch(thunkDeleteItem(item?.id))
@@ -24,12 +24,16 @@ export default function CartCard({ item }) {
                 <img src={item?.product.image} />
 
                 <div className="item-details">
-                    <div id="item-name">{item?.product.name}</div>
-                    <div>{item?.product.description}</div>
-                    <div>Quantity: {item?.quantity}</div>
+                    <div id="item-name">{item?.product.name} x {item?.quantity}</div>
+                    <div className="descrip">{item?.product.description}</div>
                     <EditQuantity item={item} />
                     <div id="delete-button" onClick={handleDelete}>Remove</div>
                 </div>
+                <div className="card-right">
+                    <div >${itemTotal}</div>
+                </div>
+
+
             </div>
         </>
     )

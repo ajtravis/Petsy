@@ -9,3 +9,24 @@
     flex-direction: column;
     align-items: center;
 }
+
+#checkout-button{
+    background-color: rgb(34, 34, 34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 20px;
+    margin: 30px;
+    width:20em;
+    height: 3em;
+    cursor: pointer;
+    transition: scale 0.1s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#checkout-button:hover{
+    scale: 1.05;
+    background-color: rgba(34,34,34,0.9);
+
+}

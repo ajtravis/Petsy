@@ -37,7 +37,7 @@ return (
         ) :
         <div>Your cart is empty.</div>}
     {cartItemsL.length?
-    <button onClick={handleCheckout}>Checkout</button> : null}
+    <div id='checkout-button' onClick={handleCheckout}>Checkout</div> : null}
    </div>
 
 )
