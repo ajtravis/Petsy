@@ -18,7 +18,8 @@ class Product(db.Model):
     # relationships
     product_user = db.relationship("User", back_populates="user_product")
     product_item = db.relationship("Cart_Item", back_populates="item_product")
-
+    product_review = db.relationship("Review", back_populates="review_product")
+    
     def to_dict(self):
         return {
             'id': self.id,
