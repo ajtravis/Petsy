@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.cart-page > *  {
+    margin-top: 10px;
+}
+
 #checkout-button{
     background-color: rgb(34, 34, 34);
     display: flex;
@@ -17,7 +21,7 @@
     align-items: center;
     color: white;
     border-radius: 20px;
-    margin: 30px;
+    margin: 20px;
     width:20em;
     height: 3em;
     cursor: pointer;

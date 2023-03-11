@@ -28,7 +28,8 @@ export default function MyCart(){
 
 return (
    <div className='cart-page'>
-    <div className='cart-head'>{cartItemsL?.length} items in your cart</div>
+    {cartItemsL?.length === 1 ?  <div className='cart-head'>{cartItemsL?.length} item in your cart</div>
+    : <div className='cart-head'>{cartItemsL?.length} items in your cart</div>}
     <div>Total: ${total}</div>
     {cartItemsL.length? cartItemsL?.map(item =>
         <div className='card-div'>
