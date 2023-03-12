@@ -23,7 +23,7 @@ def seed():
         undo_cart_items()
         undo_orders()
         undo_products()
-        undo_reviews()
+        
 
 
     seed_users()
