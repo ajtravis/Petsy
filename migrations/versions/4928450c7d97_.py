@@ -90,7 +90,7 @@ def upgrade():
 
     op.create_table('categories',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('category', sa.String(length=40), nullable=False),
+    sa.Column('category', sa.String(length=40), nullable=False, unique=True),
      sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
