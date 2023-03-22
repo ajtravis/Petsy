@@ -30,7 +30,8 @@ export default function reviewReducer(state = initialState, action) {
 	let newState = { ...state }
 	switch (action.type) {
 		case PRODUCT_REVIEWS:
-			let reviews = action.reviews
+			let reviews = action.reviews.reviews
+			newState.productReviews = {}
 			reviews.forEach(review => {
 				newState.productReviews[review.id] = review
 			});

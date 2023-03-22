@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
 import { thunkAddCart, thunkMyCart } from '../../store/cart';
+import reviewReducer, { thunkProductReviews } from '../../store/review';
 import '../../CSS/oneProduct.css'
 
 
@@ -14,9 +15,11 @@ export default function OneProduct(){
 
     useEffect(() => {
         dispatch(thunkOneProduct(id));
+        dispatch(thunkProductReviews(id))
     }, [dispatch]);
 
     const oneProduct = useSelector(state => state.products.oneProduct)
+    
 
     const addToCart = () => {
         if(!user){
