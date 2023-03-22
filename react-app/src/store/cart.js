@@ -134,7 +134,6 @@ export default function cartReducer(state = initialState, action) {
 		case MY_CART:
 			let cart = action.cart
 			let items = cart.cart_items
-			console.log('items!!!!!!!!!!!!!!!!!!!!!!', items)
 			newState.order = cart.order
 			newState.items = {}
 			items.forEach(item => {

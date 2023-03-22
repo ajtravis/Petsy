@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product, Cart_Item, Order, db
+from app.models import Product, Cart_Item, Order, Review, db
 from app.forms import ProductForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -86,3 +86,10 @@ def edit_product(id):
         db.session.commit()
         return product.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# get all reviews for a product
+@product_routes.route('/<int:id>/reviews')
+def get_reviews(id):
+    product = Product.query.get(id)
+    reviews = Review.query.filter(Review.product_id == product.id).all()
+    return {'reviews': [review.to_dict() for review in reviews]}
