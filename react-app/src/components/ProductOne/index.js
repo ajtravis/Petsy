@@ -19,7 +19,8 @@ export default function OneProduct(){
     }, [dispatch]);
 
     const oneProduct = useSelector(state => state.products.oneProduct)
-    
+    const reviewsObject = useSelector(state => state.reviews.productReviews)
+    const reviews = Object.values(reviewsObject)
 
     const addToCart = () => {
         if(!user){
@@ -36,16 +37,21 @@ export default function OneProduct(){
 return (
     <div>
         { oneProduct?
-        <div className='product-page'>
-        <div className='column-left'>
-            <img id='image' src={oneProduct.image} />
-        </div>
-        <div className='column-right'>
-            <div id='price'>${oneProduct.price}</div>
-            <div id='desc'>{oneProduct.description}</div>
-            {/* <div className='bu'>Buy it now</div> */}
-            <div className='bu cart' onClick={addToCart}>Add to cart</div>
-        </div>
+        <div>
+            <div className='product-page'>
+            <div className='column-left'>
+                <img id='image' src={oneProduct.image} />
+            </div>
+            <div className='column-right'>
+                <div id='price'>${oneProduct.price}</div>
+                <div id='desc'>{oneProduct.description}</div>
+                {/* <div className='bu'>Buy it now</div> */}
+                <div className='bu cart' onClick={addToCart}>Add to cart</div>
+            </div>
+            </div>
+            {reviews?.map(review =>
+                <div>{review.review}</div>)
+            }
         </div>
              :
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
