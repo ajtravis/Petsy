@@ -31,7 +31,7 @@ export const thunkProductReviews = (id) => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
-export const thunkCreateProduct = (form, id) => async (dispatch) => {
+export const thunkCreateReview = (form, id) => async (dispatch) => {
 	// console.log(form)
 	const response = await fetch(`/api/products/${id}/reviews`, {
 		method: "POST",

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
 import { thunkAddCart, thunkMyCart } from '../../store/cart';
 import reviewReducer, { thunkProductReviews } from '../../store/review';
+import ReviewForm from '../ReviewForm';
 import '../../CSS/oneProduct.css'
 
 
@@ -52,6 +53,11 @@ return (
             {reviews?.map(review =>
                 <div>{review.review}</div>)
             }
+             <OpenModalButton
+              buttonText="Write a Review"
+              onItemClick={closeMenu}
+              modalComponent={<ReviewForm />}
+            />
         </div>
              :
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
