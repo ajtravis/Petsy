@@ -5,6 +5,7 @@ import { thunkOneProduct } from '../../store/product';
 import { thunkAddCart, thunkMyCart } from '../../store/cart';
 import reviewReducer, { thunkProductReviews } from '../../store/review';
 import ReviewForm from '../ReviewForm';
+import OpenModalButton from "../OpenModalButton";
 import '../../CSS/oneProduct.css'
 
 
@@ -55,7 +56,6 @@ return (
             }
              <OpenModalButton
               buttonText="Write a Review"
-              onItemClick={closeMenu}
               modalComponent={<ReviewForm />}
             />
         </div>

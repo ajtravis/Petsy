@@ -97,7 +97,7 @@ def get_reviews(id):
 # Post a product review
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
-def get_reviews(id):
+def post_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

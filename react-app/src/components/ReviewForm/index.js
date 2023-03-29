@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkCreateReview, thunkProductReviews } from "../../store/review";
+import { useParams } from "react-router-dom";
 
 
 export default function ReviewForm() {
     const [review, setReview] = useState("")
     const [rating, setRating] = useState(1)
+    const [errors, setErrors] = useState("")
     const dispatch = useDispatch();
-    const product = useSelector(state => state.oneProduct)
+    const product = useSelector(state => state.products.oneProduct)
     const { closeModal } = useModal();
+
 
 
     const handleSubmit = async (e) => {
@@ -19,7 +22,7 @@ export default function ReviewForm() {
             if (data) {
               setErrors(data)
             } else {
-                dispatch(thunkProductReviews())
+                dispatch(thunkProductReviews(product?.id))
                 closeModal();
             }
 
@@ -27,7 +30,7 @@ export default function ReviewForm() {
 
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Rating
                     <input
