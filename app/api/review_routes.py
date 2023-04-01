@@ -6,7 +6,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 
 review_routes = Blueprint('reviews', __name__)
 
-@review_routes.route('/<int:id>/', methods=['PUT'])
+@review_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_review(id):
     # print('asdkjasdjkasda')

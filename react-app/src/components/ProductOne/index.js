@@ -3,8 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
 import { thunkAddCart, thunkMyCart } from '../../store/cart';
-import reviewReducer, { thunkProductReviews } from '../../store/review';
+import { thunkProductReviews } from '../../store/review';
 import ReviewForm from '../ReviewForm';
+import EditReviewForm from '../ReviewEdit';
 import OpenModalButton from "../OpenModalButton";
 import '../../CSS/oneProduct.css'
 
@@ -52,7 +53,18 @@ return (
             </div>
             </div>
             {reviews?.map(review =>
-                <div>{review.review}</div>)
+                <>
+                <div>{review.review}</div>
+                <div>
+                {user.id == review.user_id?
+                    <OpenModalButton
+                    buttonText="Edit"
+                    modalComponent={<EditReviewForm myReview={review}/>}
+
+                    /> : null}
+                </div>
+                </>
+                )
             }
              <OpenModalButton
               buttonText="Write a Review"

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkCreateReview, thunkProductReviews } from "../../store/review";
+import { thunkEditReview, thunkProductReviews } from "../../store/review";
 
 
-export default function ReviewForm() {
-    const [review, setReview] = useState("")
-    const [rating, setRating] = useState(1)
+
+export default function EditReviewForm({ myReview }) {
+    const [review, setReview] = useState(myReview?.review)
+    const [rating, setRating] = useState(myReview?.rating)
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch();
     const product = useSelector(state => state.products.oneProduct)
@@ -14,9 +15,10 @@ export default function ReviewForm() {
 
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-            const data = await dispatch(thunkCreateReview({review, rating}, product?.id));
+            const data = await dispatch(thunkEditReview({review, rating}, myReview?.id));
             if (data) {
               setErrors(data)
             } else {
@@ -28,7 +30,7 @@ export default function ReviewForm() {
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form id="editReviewForm" onSubmit={handleSubmit}>
                 <label>
                     Rating
                     <input
