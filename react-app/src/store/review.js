@@ -1,6 +1,6 @@
 const PRODUCT_REVIEWS = '/PRODUCT_REVIEWS'
 const POST_REVIEW = '/POST_REVIEW'
-
+const DELETE_REVIEW = '/DELETE_REVIEW'
 
 const prodReviews = (reviews) => ({
 	type: PRODUCT_REVIEWS,
@@ -12,6 +12,10 @@ const addReview = (review) => ({
 	review
 })
 
+const removeReview = (id) => ({
+	type: DELETE_REVIEW,
+	id
+})
 
 export const thunkProductReviews = (id) => async (dispatch) => {
 	const response = await fetch(`/api/products/${id}/reviews`, {
@@ -77,6 +81,25 @@ export const thunkEditReview = (form, id) => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
+export const thunkDeleteReview = (id) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/delete/${id}/`, {
+		method: 'DELETE',
+		headers: { "Content-Type": "application/json" },
+	})
+	// console.log(response, 'this is respond from backend')
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(removeReview(id));
+		return null
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		// console.log(data)
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
+
 const initialState = {productReviews: {}}
 export default function reviewReducer(state = initialState, action) {
 	let newState = { ...state }
@@ -91,6 +114,9 @@ export default function reviewReducer(state = initialState, action) {
 		case POST_REVIEW:
 			let review = action.review
 			newState.productReviews[review.id] = review
+			return newState
+		case DELETE_REVIEW:
+			delete newState.productReviews[action.id]
 			return newState
         default:
             return state;

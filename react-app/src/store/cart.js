@@ -88,6 +88,7 @@ export const thunkDeleteItem = (id) => async (dispatch) => {
 	}
 	else return { errors: ["An error occurred. Please try again."] }
 }
+
 export const thunkEditItem = (form, id) => async (dispatch) => {
 	console.log("form", form)
 	const response = await fetch(`/api/cart/update/${id}/`, {

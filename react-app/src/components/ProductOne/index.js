@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
 import { thunkAddCart, thunkMyCart } from '../../store/cart';
-import { thunkProductReviews } from '../../store/review';
+import { thunkProductReviews, thunkDeleteReview } from '../../store/review';
 import ReviewForm from '../ReviewForm';
 import EditReviewForm from '../ReviewEdit';
 import OpenModalButton from "../OpenModalButton";
@@ -37,6 +37,11 @@ export default function OneProduct(){
         }
     }
 
+    const deleteReview = (revId) => {
+        dispatch(thunkDeleteReview(revId))
+        .then(() => dispatch(thunkProductReviews(id)))
+    }
+
 return (
     <div>
         { oneProduct?
@@ -57,11 +62,13 @@ return (
                 <div>{review.review}</div>
                 <div>
                 {user.id == review.user_id?
+                    <>
                     <OpenModalButton
                     buttonText="Edit"
                     modalComponent={<EditReviewForm myReview={review}/>}
-
-                    /> : null}
+                    />
+                    <div onClick={() => deleteReview(review.id)}>Delete</div>
+                    </> : null}
                 </div>
                 </>
                 )
