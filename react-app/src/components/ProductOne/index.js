@@ -7,6 +7,7 @@ import { thunkProductReviews, thunkDeleteReview } from '../../store/review';
 import ReviewForm from '../ReviewForm';
 import EditReviewForm from '../ReviewEdit';
 import OpenModalButton from "../OpenModalButton";
+import ReviewCard from '../ReviewCard';
 import '../../CSS/oneProduct.css'
 
 
@@ -37,10 +38,10 @@ export default function OneProduct(){
         }
     }
 
-    const deleteReview = (revId) => {
-        dispatch(thunkDeleteReview(revId))
-        .then(() => dispatch(thunkProductReviews(id)))
-    }
+    // const deleteReview = (revId) => {
+    //     dispatch(thunkDeleteReview(revId))
+    //     .then(() => dispatch(thunkProductReviews(id)))
+    // }
 
 return (
     <div>
@@ -59,7 +60,7 @@ return (
             </div>
             {reviews?.map(review =>
                 <>
-                <div>{review.review}</div>
+                {/* <div>{review.review}</div>
                 <div>
                 {user.id == review.user_id?
                     <>
@@ -69,7 +70,8 @@ return (
                     />
                     <div onClick={() => deleteReview(review.id)}>Delete</div>
                     </> : null}
-                </div>
+                </div> */}
+                <ReviewCard review={review} />
                 </>
                 )
             }

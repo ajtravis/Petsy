@@ -1,0 +1,18 @@
+.review{
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    margin: 5px;
+
+}
+
+.user-tools {
+    display: flex;
+}
+
+.user-tools > * {
+    font-size: 12px;
+    width:auto;
+    margin:5px;
+    margin-top:  0px;
+    cursor: pointer;
+}
