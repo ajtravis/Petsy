@@ -16,7 +16,7 @@ export default function ReviewCard({ review }) {
     }
 
     return(
-        <>
+        <div className="reviewCard">
             <div className="review">{review.review}</div>
             <div>
                 {user.id == review.user_id ?
@@ -28,6 +28,6 @@ export default function ReviewCard({ review }) {
                         <div onClick={() => deleteReview(review.id)}>Delete</div>
                     </div> : null}
             </div>
-        </>
+        </div>
     )
 }

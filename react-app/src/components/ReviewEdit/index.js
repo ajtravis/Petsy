@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkEditReview, thunkProductReviews } from "../../store/review";
+import ReactStars from 'react-stars'
 
 
 
@@ -13,7 +14,9 @@ export default function EditReviewForm({ myReview }) {
     const product = useSelector(state => state.products.oneProduct)
     const { closeModal } = useModal();
 
-
+    const changeStars = (val) => {
+        setRating(val)
+    }
 
 
     const handleSubmit = async (e) => {
@@ -30,27 +33,20 @@ export default function EditReviewForm({ myReview }) {
 
     return(
         <div>
-            <form id="editReviewForm" onSubmit={handleSubmit}>
-                <label>
-                    Rating
-                    <input
-                        type="number"
-                        min={1}
-                        max={5}
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}
-                        required
+            <form id="editReviewForm" className="revForm" onSubmit={handleSubmit}>
+            <h4>edit review</h4>
+                    <ReactStars
+                    size={30}
+                    count={5}
+                    value={rating}
+                    onChange={(newValue) => changeStars(newValue)}
+                    required
                     />
-                </label>
-                <label>
-                    Review
-                    <input
-                        type="text"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        required
-                    />
-                </label>
+                <textarea
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    required
+                />
                 <button type="submit">Create</button>
             </form>
         </div>

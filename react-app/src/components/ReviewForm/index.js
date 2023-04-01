@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactStars from 'react-stars'
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkCreateReview, thunkProductReviews } from "../../store/review";
@@ -23,33 +24,31 @@ export default function ReviewForm() {
                 dispatch(thunkProductReviews(product?.id))
                 closeModal();
             }
-
       };
+
+    const changeStars = (val) => {
+        setRating(val)
+    }
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Rating
-                    <input
-                        type="number"
-                        min={1}
-                        max={5}
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Review
-                    <input
-                        type="text"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Create</button>
+
+            <form className="revForm" onSubmit={handleSubmit}>
+                <h4>write a review</h4>
+                <ReactStars
+                    count={5}
+                    size={30}
+                    value={rating}
+                    onChange={(newValue) => changeStars(newValue)}
+                    required
+                />
+                <textarea
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    required
+                />
+
+                <button type="submit">Create Review</button>
             </form>
         </div>
     )

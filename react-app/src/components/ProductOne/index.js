@@ -12,7 +12,7 @@ import '../../CSS/oneProduct.css'
 
 
 
-export default function OneProduct(){
+export default function OneProduct() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const user = useSelector(state => state.session.user)
@@ -27,14 +27,14 @@ export default function OneProduct(){
     const reviews = Object.values(reviewsObject)
 
     const addToCart = () => {
-        if(!user){
+        if (!user) {
             window.alert("Please log in first")
         }
-        else{
-        dispatch(thunkMyCart())
-        dispatch(thunkAddCart(oneProduct?.id))
-        dispatch(thunkMyCart())
-        window.alert(`${oneProduct.name} was added to your cart!`)
+        else {
+            dispatch(thunkMyCart())
+            dispatch(thunkAddCart(oneProduct?.id))
+            dispatch(thunkMyCart())
+            window.alert(`${oneProduct.name} was added to your cart!`)
         }
     }
 
@@ -43,48 +43,41 @@ export default function OneProduct(){
     //     .then(() => dispatch(thunkProductReviews(id)))
     // }
 
-return (
-    <div>
-        { oneProduct?
+    return (
         <div>
-            <div className='product-page'>
-            <div className='column-left'>
-                <img id='image' src={oneProduct.image} />
-            </div>
-            <div className='column-right'>
-                <div id='price'>${oneProduct.price}</div>
-                <div id='desc'>{oneProduct.description}</div>
-                {/* <div className='bu'>Buy it now</div> */}
-                <div className='bu cart' onClick={addToCart}>Add to cart</div>
-            </div>
-            </div>
-            {reviews?.map(review =>
-                <>
-                {/* <div>{review.review}</div>
+            {oneProduct ?
                 <div>
-                {user.id == review.user_id?
-                    <>
-                    <OpenModalButton
-                    buttonText="Edit"
-                    modalComponent={<EditReviewForm myReview={review}/>}
-                    />
-                    <div onClick={() => deleteReview(review.id)}>Delete</div>
-                    </> : null}
-                </div> */}
-                <ReviewCard review={review} />
-                </>
-                )
-            }
-             <OpenModalButton
-              buttonText="Write a Review"
-              modalComponent={<ReviewForm />}
-            />
-        </div>
-             :
+                    <div className='product-page'>
+                        <div className='column-left'>
+                            <img id='image' src={oneProduct.image} />
+                        </div>
+                        <div className='column-right'>
+                            <div id='price'>${oneProduct.price}</div>
+                            <div id='desc'>{oneProduct.description}</div>
+                            {/* <div className='bu'>Buy it now</div> */}
+                            <div className='bu cart' onClick={addToCart}>Add to cart</div>
+                        </div>
+                    </div>
+                    <div className='reviews-container'>
+                        <div className='review-header'>{reviews?.length} Shop Reviews</div>
+                        {reviews?.map(review =>
+                            <>
+                                <ReviewCard review={review} />
+                            </>
+                        )
+                        }
+                        <OpenModalButton
+                            location="review-button"
+                            buttonText="Write a Review"
+                            modalComponent={<ReviewForm />}
+                        />
+                    </div>
+                </div>
+                :
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>
                     <h1 style={{ paddingTop: '5vw', fontFamily: 'Bold' }}>Oops! Something Went Wrong!</h1>
                 </div>
             }
-    </div>
-)
+        </div>
+    )
 }
