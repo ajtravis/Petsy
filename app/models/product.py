@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .product_category import products_categories
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -19,8 +20,8 @@ class Product(db.Model):
     product_user = db.relationship("User", back_populates="user_product")
     product_item = db.relationship("Cart_Item", back_populates="item_product")
     product_review = db.relationship("Review", back_populates="review_product")
+    product_categories = db.relationship("Category", secondary=products_categories, back_populates="category_products")
 
-    
 
     def to_dict(self):
         n = 0
