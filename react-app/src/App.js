@@ -13,6 +13,7 @@ import ProductEditFormPage from "./components/ProductEditForm"
 import MyCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
 import HelpPage from "./components/HelpPage";
+import ReviewForm from "./components/ReviewForm";
 
 function App() {
   const dispatch = useDispatch();

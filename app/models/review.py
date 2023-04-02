@@ -26,6 +26,6 @@ class Review(db.Model):
             'review': self.review,
             'rating': self.rating,
             'created_at': self.created_at,
-            'author': self.review_user,
-            'product': self.review_product
+            'author': self.review_user.to_dict(),
+            # 'product': self.review_product
         }

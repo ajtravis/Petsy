@@ -1,0 +1,50 @@
+.review{
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+.user-tools {
+    display: flex;
+}
+
+.user-tools > * {
+    font-size: 12px;
+    width:auto;
+    margin:5px;
+    margin-top:  0px;
+    border-radius: 8px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+#editReview:hover{
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.deleteReview:hover{
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.username {
+    margin-left: 5px;
+    font-size: 13px;
+    text-decoration: underline;
+    color: gray;
+
+}
+
+.date{
+    margin-left: 10px;
+    font-size: 13px;
+    color: gray;
+}
+
+.post-info{
+    display: flex;
+}
+
+.reviewCard{
+    margin-bottom: 50px;
+}

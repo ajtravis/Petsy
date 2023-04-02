@@ -88,6 +88,7 @@ export const thunkDeleteItem = (id) => async (dispatch) => {
 	}
 	else return { errors: ["An error occurred. Please try again."] }
 }
+
 export const thunkEditItem = (form, id) => async (dispatch) => {
 	console.log("form", form)
 	const response = await fetch(`/api/cart/update/${id}/`, {
@@ -134,7 +135,6 @@ export default function cartReducer(state = initialState, action) {
 		case MY_CART:
 			let cart = action.cart
 			let items = cart.cart_items
-			console.log('items!!!!!!!!!!!!!!!!!!!!!!', items)
 			newState.order = cart.order
 			newState.items = {}
 			items.forEach(item => {
