@@ -26,7 +26,7 @@ def seed():
         undo_orders()
         undo_products()
         undo_reviews()
-        undo_categories()
+        
 
 
 
