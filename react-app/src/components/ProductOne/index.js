@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import ReactStars from 'react-stars';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkOneProduct } from '../../store/product';
@@ -25,6 +26,8 @@ export default function OneProduct() {
     const oneProduct = useSelector(state => state.products.oneProduct)
     const reviewsObject = useSelector(state => state.reviews.productReviews)
     const reviews = Object.values(reviewsObject)
+    const avg = Math.round(oneProduct?.avg * 100)/100
+    const starAvg = Math.round(oneProduct?.avg * 2)/2
 
     const addToCart = () => {
         if (!user) {
@@ -59,18 +62,32 @@ export default function OneProduct() {
                         </div>
                     </div>
                     <div className='reviews-container'>
-                        <div className='review-header'>{reviews?.length} Shop Reviews</div>
+                        <div className='review-top'>
+                        <div className='review-header'>{reviews?.length} reviews </div>
+                        <div className='review-info'>
+                            <div className='avg-rating'>{'('}{avg}{')'}</div>
+                            <ReactStars
+                            value={starAvg}
+                            size={25}
+                            edit={false}
+                            color1={"white"}
+                            color2={"black"}
+                            />
+                        </div>
+                        <OpenModalButton
+                            location="review-button"
+                            buttonText="write a review"
+                            modalComponent={<ReviewForm />}
+                        />
+                        </div>
+
                         {reviews?.map(review =>
                             <>
                                 <ReviewCard review={review} />
                             </>
                         )
                         }
-                        <OpenModalButton
-                            location="review-button"
-                            buttonText="Write a Review"
-                            modalComponent={<ReviewForm />}
-                        />
+                        
                     </div>
                 </div>
                 :

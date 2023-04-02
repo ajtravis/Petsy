@@ -59,10 +59,20 @@
 
 .reviews-container {
     margin-left: 20%;
+    margin-right: 50%;
 }
 
 #review-button{
-    margin: 5px;
+    font-size: 15px;
+    color: white;
+    background-color: black;
+    width: auto;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 5px;
 }
 
 .revForm {
@@ -88,4 +98,23 @@ textarea {
 
 .revForm > * {
     margin: 5px;
+}
+
+.review-info {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10px;
+}
+
+.avg-rating {
+    margin: 5px;
+    margin-bottom: 4px;
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    margin-bottom: 30px;
+    padding-bottom: 30px;
 }
