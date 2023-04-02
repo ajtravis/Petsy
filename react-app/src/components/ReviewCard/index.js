@@ -36,7 +36,7 @@ export default function ReviewCard({ review }) {
             <div className="review">{review.review}</div>
 
             <div>
-                {user.id == review.user_id ?
+                {user && (user?.id == review?.user_id) ?
                     <div className="user-tools">
                         <OpenModalButton
                             location="editReview"
