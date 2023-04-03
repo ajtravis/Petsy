@@ -153,18 +153,7 @@ function ProductEditFormPage(props) {
             </label>))
           }</div> */}
 
-        <h3 id="procat-header" >categories:</h3>
-        <div className="cat-container">
-          {prodCats.length ? prodCats.map(cat =>
-            <div className="cat-tools">
-              <div className="cat-name">{cat.category}</div>
-              <div className="remove-cat" onClick={() => removeCategory(product.id, cat.id)}>
-                <i class="fa-sharp fa-solid fa-circle-xmark fa-xs"></i>
-              </div>
-            </div>
-          ) : null}
-          {/* <AddCategory product={product}/> */}
-          <form>
+         <form id="addCatForm">
             <select
               defaultValue={null}
               onChange={(e) => {setNewCatId(e.target.value)}}
@@ -178,8 +167,20 @@ function ProductEditFormPage(props) {
                   {cat.category}
                 </option>)}
             </select>
-            <div onClick={() => handleClick(product?.id, newCatId)}>add</div>
+            <div id="addCat" onClick={() => handleClick(product?.id, newCatId)}>add category</div>
           </form>
+        <h3 id="procat-header" >categories:</h3>
+        <div className="cat-container">
+          {prodCats.length ? prodCats.map(cat =>
+            <div className="cat-tools">
+              <div className="cat-name">{cat.category}</div>
+              <div className="remove-cat" onClick={() => removeCategory(product.id, cat.id)}>
+                <i class="fa-sharp fa-solid fa-circle-xmark fa-xs"></i>
+              </div>
+            </div>
+          ) : null}
+          {/* <AddCategory product={product}/> */}
+
         </div>
         <button type="submit">Update Info</button>
       </form>
