@@ -11,9 +11,9 @@ const allProducts = (products) => ({
 	products,
 });
 
-const setCat = (cat) => ({
+const setCat = (product) => ({
 	type: SET_CAT,
-	cat,
+	product,
 });
 
 const oneProduct = (product) => ({
@@ -170,8 +170,8 @@ export const thunkSetCategory = (id, catId) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		// console.log(data, '!!just came from backend')
-		// dispatch(oneProduct(data));
-		return null
+		dispatch(setCat(data));
+		return data
 		// return response
 	}
 	else if (response.status < 500) {
@@ -233,6 +233,11 @@ export default function productsReducer(state = initialState, action) {
 			const prod = action.product
 			newState[prod.id] = prod
 			newState.myProducts[prod.id] = prod
+			return newState
+		case SET_CAT:
+			const p = action.product
+			newState[p.id] = p
+			newState.myProducts[p.id] = p
 			return newState
         default:
             return state;

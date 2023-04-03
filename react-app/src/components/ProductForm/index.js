@@ -28,7 +28,7 @@ function ProductFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(thunkCreateProduct({ name, price, description, image }));
-    
+
     if (data.errors) {
       setErrors(data.errors)
     } else {
@@ -104,7 +104,6 @@ function ProductFormPage() {
         {
           catList?.map(cat =>
             (<label
-
             >
               {cat.category}
               <input

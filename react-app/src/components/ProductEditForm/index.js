@@ -4,7 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkEditProduct, thunkOneProduct, thunkSetCategory, thunkRemoveCategory, thunkMyproducts } from "../../store/product";
 import '../../CSS/ProductModal.css'
-
+import AddCategory from "../AddCategoriesModal";
+import OpenModalButton from "../OpenModalButton";
 
 function ProductEditFormPage(props) {
   const dispatch = useDispatch();
@@ -21,20 +22,21 @@ function ProductEditFormPage(props) {
   const [cat1, setCat1] = useState(null)
   const [cat2, setCat2] = useState(null)
   const [cat3, setCat3] = useState(null)
+  const [newCatId, setNewCatId] = useState(null)
   const [checked, setChecked] = useState(false)
   const history = useHistory()
+  const state_prod = useSelector(state => state.products.myProducts[product.id])
 
+  const selection = catList?.filter(cat => !product.category_ids.includes(cat.id))
   let prodCats = catList?.filter(cat => product.category_ids.includes(cat.id))
 
-  useEffect(() => {
-    dispatch(thunkOneProduct(product?.id))
-  }, [id, dispatch]);
+
 
   useEffect(() => {
-    dispatch(thunkOneProduct(product?.id))
+    dispatch(thunkMyproducts())
     prodCats = []
     prodCats = catList?.filter(cat => product.category_ids.includes(cat.id))
-  }, [product.category_ids.length, dispatch]);
+  }, [product.category_ids.length, product, dispatch]);
 
   useEffect(() => {
     // const filtered1 = catList?.filter(cat => cat.id != cat2 && cat.id != cat3);
@@ -52,6 +54,13 @@ function ProductEditFormPage(props) {
     if (num == 3) setChecked(true)
 
   }, [cat1, cat2, cat3]);
+
+  const handleClick = async (prodId, catId) => {
+    // e.preventDefault()
+    // if(cat === null) throw new Error("You must select a category first")
+    const data = await dispatch(thunkSetCategory(prodId, catId))
+    setProduct(data)
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +85,7 @@ function ProductEditFormPage(props) {
   return (
     <div>
       <form className='product-form' onSubmit={handleSubmit}>
-      <h2>edit product details</h2>
+        <h2>edit product details</h2>
         <label>
           Product Name
           <input
@@ -144,8 +153,8 @@ function ProductEditFormPage(props) {
             </label>))
           }</div> */}
 
-          <h3 id="procat-header" >categories:</h3>
-          <div className="cat-container">
+        <h3 id="procat-header" >categories:</h3>
+        <div className="cat-container">
           {prodCats.length ? prodCats.map(cat =>
             <div className="cat-tools">
               <div className="cat-name">{cat.category}</div>
@@ -154,6 +163,23 @@ function ProductEditFormPage(props) {
               </div>
             </div>
           ) : null}
+          {/* <AddCategory product={product}/> */}
+          <form>
+            <select
+              defaultValue={null}
+              onChange={(e) => {setNewCatId(e.target.value)}}
+              required
+            >
+              <option value={null}>
+                none
+              </option>
+              {selection?.map(cat =>
+                <option value={cat.id}>
+                  {cat.category}
+                </option>)}
+            </select>
+            <div onClick={() => handleClick(product?.id, newCatId)}>add</div>
+          </form>
         </div>
         <button type="submit">Update Info</button>
       </form>

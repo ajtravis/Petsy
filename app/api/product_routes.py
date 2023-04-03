@@ -133,7 +133,7 @@ def set_category(id, catId):
     category = Category.query.get(catId)
     product.product_categories.append(category)
     db.session.commit()
-    return category.to_dict()
+    return product.to_dict()
 
 @product_routes.route('/<int:id>/categories/<int:catId>/remove')
 def remove_category(id, catId):
