@@ -4,6 +4,7 @@ const MY_PRODUCTS = '/products/MY_PRODUCTS'
 const ADD_PRODUCT = '/products/ADD_PRODUCT'
 const REMOVE_PRODUCT = '/products/REMOVE_PRODUCT'
 const SET_CAT = '/products/CAT_PRODUCTS'
+const REMOVE_CAT = '/products/CAT_PRODUCTS'
 
 const allProducts = (products) => ({
 	type: ALL_PRODUCTS,
@@ -33,6 +34,11 @@ const addProduct = (product) => ({
 const removeProduct = (id) => ({
 	type: REMOVE_PRODUCT,
 	id,
+})
+
+const removeCat = (product) => ({
+	type: REMOVE_CAT,
+	product
 })
 
 export const thunkAllproducts = () => async (dispatch) => {
@@ -176,6 +182,25 @@ export const thunkSetCategory = (id, catId) => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
+export const thunkRemoveCategory = (id, catId) => async (dispatch) => {
+	const response = await fetch(`/api/products/${id}/categories/${catId}/remove`, {
+		headers: { "Content-Type": "application/json" },
+	})
+	// console.log(response, 'this is respond from backend')
+	if (response.ok) {
+		const data = await response.json();
+		// console.log(data, '!!just came from backend')
+		dispatch(removeCat(data));
+		return data
+		// return response
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		// console.log(data)
+		if (data.errors) return data.errors;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
 
 const initialState = {}
 export default function productsReducer(state = initialState, action) {
@@ -203,6 +228,11 @@ export default function productsReducer(state = initialState, action) {
 		case REMOVE_PRODUCT:
 			delete newState[action.id]
 			// delete newState.myProducts
+			return newState
+		case REMOVE_CAT:
+			const prod = action.product
+			newState[prod.id] = prod
+			newState.myProducts[prod.id] = prod
 			return newState
         default:
             return state;

@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { thunkEditProduct, thunkOneProduct, thunkSetCategory } from "../../store/product";
+import { thunkEditProduct, thunkOneProduct, thunkSetCategory, thunkRemoveCategory, thunkMyproducts } from "../../store/product";
 import '../../CSS/ProductModal.css'
 
 
-function ProductEditFormPage({ product }) {
+function ProductEditFormPage(props) {
   const dispatch = useDispatch();
   const { id } = useParams()
   const { closeModal } = useModal()
   const allCats = useSelector(state => state.categories.all)
   const catList = Object.values(allCats)
-  // const product = useSelector(state => state.products.oneProduct)
+  const [product, setProduct] = useState(props.product)
   const [name, setName] = useState(product?.name);
   const [price, setPrice] = useState(product?.price);
   const [description, setDescription] = useState(product?.description);
@@ -23,19 +23,32 @@ function ProductEditFormPage({ product }) {
   const [cat3, setCat3] = useState(null)
   const [checked, setChecked] = useState(false)
   const history = useHistory()
-  const prod_cats = product.category_ids
-  
+
+  let prodCats = catList?.filter(cat => product.category_ids.includes(cat.id))
 
   useEffect(() => {
-    dispatch(thunkOneProduct(id))
+    dispatch(thunkOneProduct(product?.id))
   }, [id, dispatch]);
 
   useEffect(() => {
+    dispatch(thunkOneProduct(product?.id))
+    prodCats = []
+    prodCats = catList?.filter(cat => product.category_ids.includes(cat.id))
+  }, [product.category_ids.length, dispatch]);
+
+  useEffect(() => {
+    // const filtered1 = catList?.filter(cat => cat.id != cat2 && cat.id != cat3);
+    // const filtered2 = catList?.filter(cat => cat.id != cat1 && cat.id != cat3);
+    // const filtered3 = catList?.filter(cat => cat.id != cat2 && cat.id != cat1);
+
+    // setFilteredCats1(filtered1)
+    // setFilteredCats2(filtered2)
+    // setFilteredCats3(filtered3)
     setChecked(false)
-    let num= 0
-    if (cat1 != null) num+=1
-    if (cat2 != null) num+=1
-    if (cat3 != null) num+=1
+    let num = 0
+    if (cat1 != null) num += 1
+    if (cat2 != null) num += 1
+    if (cat3 != null) num += 1
     if (num == 3) setChecked(true)
 
   }, [cat1, cat2, cat3]);
@@ -46,19 +59,24 @@ function ProductEditFormPage({ product }) {
     if (data.errors) {
       setErrors(data.errors)
     } else {
-      if (cat1) dispatch(thunkSetCategory(data.id, cat1))
-      if (cat2) dispatch(thunkSetCategory(data.id, cat2))
-      if (cat3) dispatch(thunkSetCategory(data.id, cat3))
+      // if (cat1) dispatch(thunkSetCategory(data.id, cat1))
+      // if (cat2) dispatch(thunkSetCategory(data.id, cat2))
+      // if (cat3) dispatch(thunkSetCategory(data.id, cat3))
       dispatch(thunkOneProduct(product?.id))
       history.push(`/products/${product?.id}`)
       closeModal()
     }
-
   };
+
+  const removeCategory = async (prodId, catId) => {
+    const newProd = await dispatch(thunkRemoveCategory(prodId, catId))
+    setProduct(newProd)
+  }
 
   return (
     <div>
       <form className='product-form' onSubmit={handleSubmit}>
+      <h2>edit product details</h2>
         <label>
           Product Name
           <input
@@ -97,7 +115,7 @@ function ProductEditFormPage({ product }) {
             required
           />
         </label>
-        <div>select up to 3 categories</div>
+        {/* <div>select up to 3 categories</div>
         <div className="checkbox-container">
           {
             catList?.map(cat =>
@@ -124,7 +142,19 @@ function ProductEditFormPage({ product }) {
                 }
               />
             </label>))
-          }</div>
+          }</div> */}
+
+          <h3 id="procat-header" >categories:</h3>
+          <div className="cat-container">
+          {prodCats.length ? prodCats.map(cat =>
+            <div className="cat-tools">
+              <div className="cat-name">{cat.category}</div>
+              <div className="remove-cat" onClick={() => removeCategory(product.id, cat.id)}>
+                <i class="fa-sharp fa-solid fa-circle-xmark fa-xs"></i>
+              </div>
+            </div>
+          ) : null}
+        </div>
         <button type="submit">Update Info</button>
       </form>
     </div>

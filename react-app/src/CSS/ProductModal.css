@@ -7,15 +7,15 @@
     justify-content: baseline;
     border: solid 0px rgba(0, 0, 0, .5);
     border-radius: 20px;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
-
-
 
 .product-form > label > input {
     width: 300px;
     height: 90%;
     border-radius: 5px;
     float: right;
+    width: 70%;
 }
 
 .product-form > button {
@@ -36,7 +36,9 @@
     border-radius: 10px;
     margin: 10px;
     width: 450px;
-
+    font-size: 20px;
+    text-align: start;
+    display: block;
 }
 
 .modal-content{
@@ -55,4 +57,31 @@
 
 .checkbox-container > label{
     padding: 10px;
+}
+
+.cat-tools {
+    display: flex;
+    flex-direction: row;
+}
+
+.cat-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 400px;
+}
+
+.cat-name{
+   background-color:  rgb(241, 100, 30);
+   color: aliceblue;
+   border: 1px solid black;
+   border-radius: 10px;
+   padding: 0px 5px 3px 5px;
+   font-size: 20px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.product-form > label > text{
+}
+
+.remove-cat {
+    cursor: pointer;
 }

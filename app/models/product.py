@@ -45,3 +45,5 @@ class Product(db.Model):
             'avg': avg,
             'category_ids': [c.id for c in self.product_categories]
         }
+
+    
