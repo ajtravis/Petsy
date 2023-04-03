@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product, Cart_Item, Order, Review, db
+from app.models import Product, Cart_Item, Order, Review, Category, db
 from app.forms import ProductForm, ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -116,3 +116,13 @@ def post_review(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@product_routes.route('/categories/<int:id>')
+def filtered_products(id):
+    """
+    Query for all users and returns them in a list of user dictionaries
+    """
+
+    category = Category.query.get(id).to_dict()
+
+
+    return {'cat_products': category["products"]}

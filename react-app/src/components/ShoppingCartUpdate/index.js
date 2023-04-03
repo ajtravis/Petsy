@@ -10,7 +10,6 @@ function EditQuantity({item}) {
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    console.log("item", item)
     const data = await dispatch(thunkEditItem({quantity}, item?.id));
     dispatch(thunkMyCart())
     if (data) {

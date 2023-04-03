@@ -32,6 +32,8 @@ class Product(db.Model):
             avg = n/len(avg)
         else:
             avg = 0
+
+
         return {
             'id': self.id,
             'name': self.name,
@@ -40,6 +42,5 @@ class Product(db.Model):
             'description': self.description,
             'image': self.image,
             'created_at': self.created_at,
-            'avg': avg
-
+            'avg': avg,
         }
