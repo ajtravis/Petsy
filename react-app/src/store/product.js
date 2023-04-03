@@ -3,10 +3,15 @@ const ONE_PRODUCT = '/products/ONE_PRODUCT'
 const MY_PRODUCTS = '/products/MY_PRODUCTS'
 const ADD_PRODUCT = '/products/ADD_PRODUCT'
 const REMOVE_PRODUCT = '/products/REMOVE_PRODUCT'
-
+const CAT_PRODUCTS = '/products/CAT_PRODUCTS'
 
 const allProducts = (products) => ({
 	type: ALL_PRODUCTS,
+	products,
+});
+
+const catProducts = (products) => ({
+	type: CAT_PRODUCTS,
 	products,
 });
 
@@ -38,6 +43,24 @@ export const thunkAllproducts = () => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(allProducts(data));
+		return response
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
+
+
+export const thunkCatProducts = (id) => async (dispatch) => {
+	const response = await fetch(`/api/products/categories/${id}`, {
+		headers: { "Content-Type": "application/json" },
+	})
+	// console.log(response)
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(catProducts(data));
 		return response
 	}
 	else if (response.status < 500) {
@@ -159,6 +182,13 @@ export default function productsReducer(state = initialState, action) {
 			// console.log(all)
 			for (let p of all.products) newState[p.id] = p
 			return newState;
+		case CAT_PRODUCTS:
+			let prods = action.products
+			console.log("prooooooooooooods!!!!!!!", prods)
+			for(let p of prods){
+				newState.categoryProducts[p.id] = p
+			}
+			return newState
 		case ONE_PRODUCT:
 			let one = action.product
 			// console.log(one, 'this is the reducer')

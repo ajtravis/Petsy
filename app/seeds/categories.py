@@ -19,7 +19,7 @@ def seed_categories():
         category="plant"
     )
     c6 = Category(
-        category="rodent"
+        category="small pet"
     )
     c7 = Category(
         category="food"
@@ -37,7 +37,7 @@ def seed_categories():
         category="furniture"
     )
     c12 = Category(
-        category="lizard"
+        category="reptile"
     )
     c13 = Category(
         category="tank"

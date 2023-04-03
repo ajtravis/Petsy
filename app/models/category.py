@@ -14,3 +14,12 @@ class Category(db.Model):
     # relationships
 
     category_products = db.relationship("Product", secondary=products_categories, back_populates="product_categories")
+
+    def to_dict(self):
+
+
+        return {
+            'id': self.id,
+            'category': self.category,
+            'products': [p.to_dict() for p in self.category_products]
+        }

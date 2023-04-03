@@ -19,6 +19,8 @@ def seed_product_categories():
     misc = Category.query.get(14)
     health = Category.query.get(15)
 
+
+
     collar = Product.query.get(1)
     collar.product_categories.append(dog)
     collar.product_categories.append(cat)
@@ -71,5 +73,17 @@ def seed_product_categories():
     chair.product_categories.append(furniture)
     chair.product_categories.append(misc)
 
+    feeder = Product.query.get(13)
+    feeder.product_categories.append(bird)
+    feeder.product_categories.append(misc)
+
+    catnip = Product.query.get(14)
+    catnip.product_categories.append(plant)
+    catnip.product_categories.append(cat)
+    catnip.product_categories.append(treat)
+
+    ter = Product.query.get(15)
+    ter.product_categories.append(lizard)
+    ter.product_categories.append(tank)
+
     db.session.commit()
-    

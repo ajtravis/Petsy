@@ -87,6 +87,29 @@ def seed_products():
         description="A leather chair the perfect size for a guinea pig.",
         image='https://s7d2.scene7.com/is/image/PetSmart/5329785?$sclp-prd-main_large$'
         )
+    feeder= Product(
+        name='Bird Feeder',
+        seller_id=3,
+        price=24.99,
+        description="A squirrel-proof bird feeder",
+        image='https://s7d2.scene7.com/is/image/PetSmart/5299983?$sclp-prd-main_large$'
+        )
+    catnip= Product(
+        name='Catnip Plant',
+        seller_id=2,
+        price=8.99,
+        description="A live catnip plant for your cats to enjoy",
+        image='https://s7d2.scene7.com/is/image/PetSmart/5042783?$sclp-prd-main_large$'
+        )
+    terrarium= Product(
+        name='40-Gallon Terrarium',
+        seller_id=1,
+        price=209.99,
+        description="A desert terrarium with 2 opening doors to keep your reptiles happy and warm.",
+        image='https://s7d2.scene7.com/is/image/PetSmart/5315113?$sclp-prd-main_large$'
+        )
+
+
 
     db.session.add(blue)
     db.session.add(wet_food)
@@ -100,6 +123,9 @@ def seed_products():
     db.session.add(treats)
     db.session.add(greenies)
     db.session.add(chair)
+    db.session.add(feeder)
+    db.session.add(catnip)
+    db.session.add(terrarium)
     db.session.commit()
 
 

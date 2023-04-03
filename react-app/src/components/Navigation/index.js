@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { useHistory } from 'react-router-dom';
 import { thunkMyCart } from '../../store/cart';
+import { thunkAllCategories, resetCat } from '../../store/category';
 import './Navigation.css';
 
 function Navigation({ isLoaded, num }){
@@ -11,15 +12,17 @@ function Navigation({ isLoaded, num }){
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const cartItems = useSelector(state => state.cart?.items)
-	console.log("cartItems", cartItems)
+
 
 
 	useEffect(() => {
         dispatch(thunkMyCart());
+		dispatch(thunkAllCategories())
     }, [dispatch]);
 
 
 	const handleClick = () => {
+		dispatch(resetCat())
 		history.push('/')
 	}
 

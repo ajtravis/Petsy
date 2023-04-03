@@ -23,3 +23,13 @@
     display: flex;
     justify-content: center;
 }
+
+.filter{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.filter > * {
+    margin: 10px;
+}
