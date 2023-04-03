@@ -3,16 +3,16 @@ const ONE_PRODUCT = '/products/ONE_PRODUCT'
 const MY_PRODUCTS = '/products/MY_PRODUCTS'
 const ADD_PRODUCT = '/products/ADD_PRODUCT'
 const REMOVE_PRODUCT = '/products/REMOVE_PRODUCT'
-const CAT_PRODUCTS = '/products/CAT_PRODUCTS'
+const SET_CAT = '/products/CAT_PRODUCTS'
 
 const allProducts = (products) => ({
 	type: ALL_PRODUCTS,
 	products,
 });
 
-const catProducts = (products) => ({
-	type: CAT_PRODUCTS,
-	products,
+const setCat = (cat) => ({
+	type: SET_CAT,
+	cat,
 });
 
 const oneProduct = (product) => ({
@@ -52,23 +52,6 @@ export const thunkAllproducts = () => async (dispatch) => {
 	else return { errors: ["An error occurred. Please try again."] }
 }
 
-
-export const thunkCatProducts = (id) => async (dispatch) => {
-	const response = await fetch(`/api/products/categories/${id}`, {
-		headers: { "Content-Type": "application/json" },
-	})
-	// console.log(response)
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(catProducts(data));
-		return response
-	}
-	else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) return data;
-	}
-	else return { errors: ["An error occurred. Please try again."] }
-}
 
 export const thunkOneProduct = (id) => async (dispatch) => {
 	const response = await fetch(`/api/products/${id}`, {
@@ -119,7 +102,7 @@ export const thunkCreateProduct = (form) => async (dispatch) => {
 		const data = await response.json();
 		// console.log(data, '!!just came from backend')
 		dispatch(addProduct(data));
-		return null
+		return data
 	}
 	else if (response.status < 500) {
 		const data = await response.json();
@@ -163,7 +146,7 @@ export const thunkEditProduct = (form, id) => async (dispatch) => {
 		const data = await response.json();
 		// console.log(data, '!!just came from backend')
 		dispatch(addProduct(data));
-		return null
+		return data
 	}
 	else if (response.status < 500) {
 		const data = await response.json();
@@ -172,6 +155,27 @@ export const thunkEditProduct = (form, id) => async (dispatch) => {
 	}
 	else return { errors: ["An error occurred. Please try again."] }
 }
+
+export const thunkSetCategory = (id, catId) => async (dispatch) => {
+	const response = await fetch(`/api/products/${id}/categories/${catId}`, {
+		headers: { "Content-Type": "application/json" },
+	})
+	// console.log(response, 'this is respond from backend')
+	if (response.ok) {
+		const data = await response.json();
+		// console.log(data, '!!just came from backend')
+		// dispatch(oneProduct(data));
+		return null
+		// return response
+	}
+	else if (response.status < 500) {
+		const data = await response.json();
+		// console.log(data)
+		if (data.errors) return data;
+	}
+	else return { errors: ["An error occurred. Please try again."] }
+}
+
 
 const initialState = {}
 export default function productsReducer(state = initialState, action) {
@@ -182,13 +186,6 @@ export default function productsReducer(state = initialState, action) {
 			// console.log(all)
 			for (let p of all.products) newState[p.id] = p
 			return newState;
-		case CAT_PRODUCTS:
-			let prods = action.products
-			console.log("prooooooooooooods!!!!!!!", prods)
-			for(let p of prods){
-				newState.categoryProducts[p.id] = p
-			}
-			return newState
 		case ONE_PRODUCT:
 			let one = action.product
 			// console.log(one, 'this is the reducer')

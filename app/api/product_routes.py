@@ -126,3 +126,11 @@ def filtered_products(id):
 
 
     return {'cat_products': category["products"]}
+
+@product_routes.route('/<int:id>/categories/<int:catId>')
+def set_category(id, catId):
+    product = Product.query.get(id)
+    category = Category.query.get(catId)
+    product.product_categories.append(category)
+    db.session.commit()
+    return category.to_dict()
