@@ -1,8 +1,5 @@
 .card-image{
     cursor: pointer;
-    border: solid 1px aliceblue;
-
-
 }
 
 .delete-button{
@@ -33,4 +30,8 @@
     padding: 2px;
     width:70px;
     text-align: center;
+}
+
+.card{
+    color:ivory;
 }
