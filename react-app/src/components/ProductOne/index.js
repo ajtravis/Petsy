@@ -70,8 +70,8 @@ export default function OneProduct() {
                             value={starAvg}
                             size={25}
                             edit={false}
-                            color1={"white"}
-                            color2={"black"}
+                            color1={"transparent"}
+                            color2={"#f1641ee6"}
                             />
                         </div>
                         <OpenModalButton
@@ -87,7 +87,7 @@ export default function OneProduct() {
                             </>
                         )
                         }
-                        
+
                     </div>
                 </div>
                 :

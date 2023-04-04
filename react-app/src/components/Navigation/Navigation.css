@@ -20,6 +20,7 @@
   justify-content: space-around;
   align-items: center;
   background-image: url("https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif");
+  background-color: #F0EAD6;
 }
 
 #home-button{
@@ -43,7 +44,7 @@
 .nav-right{
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .nav-right > * {

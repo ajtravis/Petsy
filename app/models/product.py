@@ -43,4 +43,7 @@ class Product(db.Model):
             'image': self.image,
             'created_at': self.created_at,
             'avg': avg,
+            'category_ids': [c.id for c in self.product_categories]
         }
+
+    
