@@ -124,6 +124,7 @@ function ProductEditFormPage(props) {
             required
           />
         </label>
+        <button type="submit">Update Info</button>
         {/* <div>select up to 3 categories</div>
         <div className="checkbox-container">
           {
@@ -153,7 +154,10 @@ function ProductEditFormPage(props) {
             </label>))
           }</div> */}
 
-         <form id="addCatForm">
+
+        <h3 id="procat-header" >categories:</h3>
+        <form id="addCatForm">
+          <div>select a category to add:</div>
             <select
               defaultValue={null}
               onChange={(e) => {setNewCatId(e.target.value)}}
@@ -167,9 +171,9 @@ function ProductEditFormPage(props) {
                   {cat.category}
                 </option>)}
             </select>
+
             <div id="addCat" onClick={() => handleClick(product?.id, newCatId)}>add category</div>
           </form>
-        <h3 id="procat-header" >categories:</h3>
         <div className="cat-container">
           {prodCats.length ? prodCats.map(cat =>
             <div className="cat-tools">
@@ -182,7 +186,7 @@ function ProductEditFormPage(props) {
           {/* <AddCategory product={product}/> */}
 
         </div>
-        <button type="submit">Update Info</button>
+
       </form>
     </div>
   );
