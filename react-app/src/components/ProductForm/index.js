@@ -12,7 +12,7 @@ function ProductFormPage() {
   const allCats = useSelector(state => state.categories.all)
   const catList = Object.values(allCats)
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0.00);
+  const [price, setPrice] = useState(0.01);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [cat1, setCat1] = useState(null)
@@ -73,7 +73,7 @@ function ProductFormPage() {
           Price
           <input
             type="number"
-            min="0.01"
+            min={0.01}
             step={0.01}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
