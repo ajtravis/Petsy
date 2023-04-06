@@ -21,8 +21,9 @@ export default function CartCard({ item }) {
     return (
         <>
             <div className="cart-card">
-                <img src={item?.product.image} />
-
+                <div className="card-img-container">
+                    <img src={item?.product.image} />
+                </div>
                 <div className="item-details">
                     <div id="item-name">{item?.product.name} x {item?.quantity}</div>
                     <div className="descrip">{item?.product.description}</div>

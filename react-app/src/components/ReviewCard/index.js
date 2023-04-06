@@ -30,8 +30,8 @@ export default function ReviewCard({ review }) {
                 value={review.rating}
                 size={25}
                 edit={false}
-                color1={"white"}
-                color2={"black"}
+                color1={"transparent"}
+                color2={"#f1641ee6"}
             />
             <div className="review">{review.review}</div>
 
