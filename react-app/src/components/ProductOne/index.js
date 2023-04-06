@@ -49,7 +49,7 @@ export default function OneProduct() {
     return (
         <div>
             {oneProduct ?
-                <div>
+                <div className='page-container'>
                     <div className='product-page'>
                         <div className='column-left'>
                             <img id='image' src={oneProduct.image} />
@@ -87,7 +87,6 @@ export default function OneProduct() {
                             </>
                         )
                         }
-
                     </div>
                 </div>
                 :

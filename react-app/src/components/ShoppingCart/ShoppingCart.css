@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     color: ivory;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .cart-page > *  {

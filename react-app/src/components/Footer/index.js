@@ -16,12 +16,12 @@ export default function Footer() {
             <div>
             <OpenModalButton
               location = "footer"
-              buttonText="Contact Me"
+              buttonText="Contact"
               modalComponent={<ContactInfo />}
               />
             </div>
 
-            <div className="stack">
+            {/* <div className="stack">
                 Backend:
                 <div>Flask</div>
                 <div>SQLAlchemy</div>
@@ -30,7 +30,7 @@ export default function Footer() {
             <div className="stack">Frontend:
                 <div>React</div>
                 <div>Redux</div>
-            </div>
+            </div> */}
             <div className="help-button" onClick={handleHelp}>Help</div>
         </div>
     )
