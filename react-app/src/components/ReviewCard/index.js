@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-stars";
 import './ReviewCard.css'
+import { thunkOneProduct } from "../../store/product";
 
 export default function ReviewCard({ review }) {
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ export default function ReviewCard({ review }) {
     const deleteReview = (revId) => {
         dispatch(thunkDeleteReview(revId))
         .then(() => dispatch(thunkProductReviews(id)))
+        .then(() => dispatch(thunkOneProduct(id)))
     }
 
     return(

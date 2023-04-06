@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkEditReview, thunkProductReviews } from "../../store/review";
 import ReactStars from 'react-stars'
+import { thunkOneProduct } from "../../store/product";
 
 
 
@@ -26,6 +27,7 @@ export default function EditReviewForm({ myReview }) {
               setErrors(data)
             } else {
                 dispatch(thunkProductReviews(product?.id))
+                dispatch(thunkOneProduct(product?.id))
                 closeModal();
             }
 
@@ -39,6 +41,7 @@ export default function EditReviewForm({ myReview }) {
                     size={30}
                     count={5}
                     value={rating}
+                    half={false}
                     onChange={(newValue) => changeStars(newValue)}
                     required
                     />

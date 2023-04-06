@@ -3,6 +3,7 @@ import ReactStars from 'react-stars'
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkCreateReview, thunkProductReviews } from "../../store/review";
+import { thunkOneProduct } from "../../store/product";
 
 
 export default function ReviewForm() {
@@ -22,6 +23,7 @@ export default function ReviewForm() {
               setErrors(data)
             } else {
                 dispatch(thunkProductReviews(product?.id))
+                dispatch(thunkOneProduct(product?.id))
                 closeModal();
             }
       };
@@ -39,6 +41,7 @@ export default function ReviewForm() {
                     count={5}
                     size={30}
                     value={rating}
+                    half={false}
                     onChange={(newValue) => changeStars(newValue)}
                     required
                 />
