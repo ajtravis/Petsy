@@ -27,11 +27,12 @@ export default function CartCard({ item }) {
                 <div className="item-details">
                     <div id="item-name">{item?.product.name} x {item?.quantity}</div>
                     <div className="descrip">{item?.product.description}</div>
-                    <EditQuantity item={item} />
+
                     <div id="delete-button" onClick={handleDelete}>Remove</div>
                 </div>
                 <div className="card-right">
-                    <div >${itemTotal}</div>
+                    <div className="item-price">${itemTotal}</div>
+                    <div className="quant">quantity: <EditQuantity item={item} /></div>
                 </div>
 
 

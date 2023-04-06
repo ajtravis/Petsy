@@ -26,12 +26,16 @@
 
 .owner-buttons > *{
     font-size: 20px;
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(241, 100, 30);
     color: white;
     border-radius: 15px;
     padding: 2px;
     width:70px;
     text-align: center;
+}
+
+.owner-buttons > *:hover{
+    background-color: rgba(241, 100, 30, 0.5);
 }
 
 .card{
