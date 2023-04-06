@@ -46,15 +46,15 @@
     width:100%;
     font-size: 20px;
     text-align: center;
-    border: 3px solid black;
     margin: 10px;
     border-radius: 30px;
     cursor: pointer;
+    color: ivory;
+    background-color: rgb(241, 100, 30);
 }
 
-.cart{
-    background-color: black;
-    color: white;
+.bu:hover{
+    background-color: rgba(241, 100, 30, 0.5);
 }
 
 .review-header {
@@ -71,16 +71,19 @@
 
 #review-button{
     font-size: 15px;
-    color: white;
-    background-color: black;
     width: auto;
     text-align: center;
-    border: 1px solid black;
     border-radius: 30px;
     cursor: pointer;
     margin-left: auto;
     padding: 5px;
     margin-right: 15%;
+    color: ivory;
+    background-color: rgb(241, 100, 30);
+}
+
+#review-button:hover{
+    background-color: rgba(241, 100, 30, 0.5);
 }
 
 .revForm {

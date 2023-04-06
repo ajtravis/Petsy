@@ -17,7 +17,7 @@
 }
 
 #checkout-button{
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(241, 100, 30);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,6 @@
 }
 
 #checkout-button:hover{
-    scale: 1.05;
-    background-color: rgba(34,34,34,0.9);
+    background-color: rgba(241, 100, 30, .5);
 
 }

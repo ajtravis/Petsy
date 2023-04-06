@@ -1,8 +1,9 @@
 .cart-card{
     display: flex;
     width: 40vw;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
     max-height: 400px;
+    margin-bottom: 5vh;
 }
 
 #item-name{
@@ -29,10 +30,11 @@
     font-size: 15px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     justify-self:end;
+    background-color: rgb(241, 100, 30);
 }
 
 #delete-button:hover{
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgb(241, 100, 30, .5);
 }
 
 .select-quant{
@@ -75,11 +77,24 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 10px;
+    align-items: end;
+    margin-top: 10px;
+    width: 100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .card-image-container{
     height: 100%;
     width: 100%;
+}
+
+.quant{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.quant > *{
+    margin-left: 10px;
 }
