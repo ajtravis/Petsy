@@ -87,7 +87,7 @@ export default function ManyProducts(){
     <div className='card-gallery'>
         {prods.length ? prods.map(product =>
             <div className='card-outer'>
-                <div className='card-container' onClick={() => handleClick(product)}>
+                <div className='card-container'>
                     <ProductCard product={product} location={'home-page'}/>
                 </div>
             </div>
