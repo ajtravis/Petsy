@@ -49,7 +49,7 @@ export default function ProductCard({ product, location }) {
                     <div className="prod-head">${product?.price}</div>
                 </div>
                 </div>
-                <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
+                {(product?.seller_id == user?.id) && location !== 'home-page' ? (
                     <div className="owner-buttons">
                         <div className="delete-button" onClick={handleDelete}>delete</div>
                         <div>
@@ -59,7 +59,7 @@ export default function ProductCard({ product, location }) {
                             />
                         </div>
                     </div>
-                ) : null}</div>
+                ) : null}
 
         </>
     )
