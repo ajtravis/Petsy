@@ -26,8 +26,8 @@
 
 .owner-buttons{
     display: flex;
-    justify-content: space-between;
-    padding: 15px;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .owner-buttons > *{
