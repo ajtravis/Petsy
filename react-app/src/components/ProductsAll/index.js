@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { thunkAllproducts } from '../../store/product';
+import { thunkAllproducts, resetProd } from '../../store/product';
 import { thunkAllCategories, thunkSelectCategory, resetCat } from '../../store/category';
 import ProductCard from '../ProductCard';
 import CatDropdown from '../CategoryDropdown';
@@ -40,6 +40,7 @@ export default function ManyProducts(){
     }
 
     useEffect(() => {
+        dispatch(resetProd())
         dispatch(thunkAllproducts());
         dispatch(thunkAllCategories())
 

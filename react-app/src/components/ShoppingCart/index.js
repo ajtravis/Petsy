@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { thunkMyCart, thunkDeleteItem, thunkCheckout } from '../../store/cart';
+import { resetProd } from '../../store/product';
 import CartCard from '../ShoppingCartCard';
 import './ShoppingCart.css'
 
@@ -16,6 +17,7 @@ export default function MyCart(){
     let total = Math.round(order?.amount * 100) / 100
 
     useEffect(() => {
+        dispatch(resetProd())
         dispatch(thunkMyCart());
     }, [dispatch]);
 
