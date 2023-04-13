@@ -22,10 +22,8 @@ export default function MyProducts() {
         <div id='page'>
             <div className='card-gallery'>
                 {myProducts?.length ? myProducts.map(product =>
-                    <div>
-                        <div className='card-gallery'>
+                    <div className='card-container'>
                             <ProductCard product={product} />
-                        </div>
                     </div>
                 ) :
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'center', width: '100vw' }}>

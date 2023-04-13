@@ -24,13 +24,15 @@ function ProductFormPage() {
   // const [filteredCats2, setFilteredCats2] = useState([...catList])
   // const [filteredCats3, setFilteredCats3] = useState([...catList])
   const [checked, setChecked] = useState(false)
+  let c;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(thunkCreateProduct({ name, price, description, image }));
 
-    if (data.errors) {
-      setErrors(data.errors)
+    if (data?.errors) {
+      console.log(data)
+      setErrors(data?.errors)
     } else {
       if (cat1) dispatch(thunkSetCategory(data.id, cat1))
       if (cat2) dispatch(thunkSetCategory(data.id, cat2))
@@ -60,13 +62,18 @@ function ProductFormPage() {
   return (
     <div>
       <form className="product-form" onSubmit={handleSubmit}>
+        <ul>
+          {errors? errors.map((error, idx) => (
+            <li className="err" key={idx}>{error}</li>
+          )) : null}
+        </ul>
         <label>
           Product Name
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -77,7 +84,7 @@ function ProductFormPage() {
             step={0.01}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -86,7 +93,7 @@ function ProductFormPage() {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -95,15 +102,18 @@ function ProductFormPage() {
             type="url"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            required
+            // required
           />
         </label>
 
-        <div>select up to 3 categories</div>
+        <div id="cat-head">select up to 3 categories</div>
         <div className="checkbox-container">
         {
+
           catList?.map(cat =>
-            (<label
+            {if(cat.id == cat1 || cat.id == cat2 || cat.id == cat3) return(
+            <label
+            className={`cat-label chosen`}
             >
               {cat.category}
               <input
@@ -124,7 +134,32 @@ function ProductFormPage() {
                 }
                 }
               />
-            </label>))
+            </label>)
+            return(
+              <label
+            className={`cat-label`}
+            >
+              {cat.category}
+              <input
+                className="checkCat"
+                type="checkbox"
+                value={cat.id}
+                disabled = {checked && cat1 != cat.id && cat2 != cat.id && cat3 != cat.id}
+                onChange={(e) => {
+                  if(cat1 == cat.id) setCat1(null)
+                  else if(cat2 == cat.id) setCat2(null)
+                  else if(cat3 == cat.id) setCat3(null)
+                  else if(cat1 == null) setCat1(e.target.value)
+                  else if(cat2 == null) setCat2(e.target.value)
+                  else if(cat3 == null) setCat3(e.target.value)
+                  else (
+                    e.preventDefault()
+                  )
+                }
+                }
+              />
+            </label>)
+            })
         }</div>
         {/* <select
           value={cat1}

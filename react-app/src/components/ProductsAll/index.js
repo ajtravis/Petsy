@@ -35,6 +35,10 @@ export default function ManyProducts(){
         prods = productList
     }
 
+    const handleClick = (prod) => {
+        history.push(`products/${prod.id}`)
+    }
+
     useEffect(() => {
         dispatch(thunkAllproducts());
         dispatch(thunkAllCategories())
@@ -54,7 +58,7 @@ export default function ManyProducts(){
     if(myProducts) productList.pop()
 
 
-    console.log(selected, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
     catProducts?.length? prods = catProducts : prods = productList;
 
     if(selected && (catProducts?.length === 0)){
@@ -82,7 +86,7 @@ export default function ManyProducts(){
     <div id='page'>
     <div className='card-gallery'>
         {prods.length ? prods.map(product =>
-            <div>
+            <div className='card-outer'>
                 <div className='card-container'>
                     <ProductCard product={product} location={'home-page'}/>
                 </div>

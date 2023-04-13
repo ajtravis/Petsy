@@ -113,7 +113,7 @@ export const thunkCreateProduct = (form) => async (dispatch) => {
 	else if (response.status < 500) {
 		const data = await response.json();
 		// console.log(data, 'ERROR STUFF')
-		if (data.errors) return data;
+		if (data) return data;
 	}
 	else return { errors: ["An error occurred. Please try again."] }
 }

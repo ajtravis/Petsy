@@ -22,10 +22,10 @@ export default function ProductCard({ product, location }) {
 
     const handleDelete = () => {
         dispatch(thunkDeleteProduct(product.id))
-        .then(() => dispatch(thunkAllproducts()))
-        .then(() => dispatch(thunkMyproducts()))
-        // .then(() => item ? dispatch(thunkDeleteItem(item.id)) : null)
-        .then(() => dispatch(thunkMyCart()))
+            .then(() => dispatch(thunkAllproducts()))
+            .then(() => dispatch(thunkMyproducts()))
+            // .then(() => item ? dispatch(thunkDeleteItem(item.id)) : null)
+            .then(() => dispatch(thunkMyCart()))
         // window.alert("Product has been removed!")
     }
 
@@ -39,26 +39,27 @@ export default function ProductCard({ product, location }) {
     }
     return (
         <>
-            <div className="card" >
-                <div className='card-image' onClick={handleClick}>
+            <div className="card" onClick={handleClick}>
+                <div className='card-image' >
                     <img src={product?.image} />
                 </div>
-            <div className="card-header">
-                <div className="prod-head">{product?.name}</div>
-                <div className="prod-head">${product?.price}</div>
-            </div>
-            <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
-                <div className="owner-buttons">
-                    <div className="delete-button" onClick={handleDelete}>delete</div>
-                    <div>
-                        <OpenModalButton
-                            buttonText="edit"
-                            modalComponent={<ProductEditFormPage product={product} />}
-                        />
-                    </div>
+                <div className="card-header">
+                    <div className="prod-head">{product?.name}</div>
+                    <div className="prod-head">${product?.price}</div>
                 </div>
-            ) : null}</div>
-            </div>
+                </div>
+                <div>{(product?.seller_id == user?.id) && location !== 'home-page' ? (
+                    <div className="owner-buttons">
+                        <div className="delete-button" onClick={handleDelete}>delete</div>
+                        <div>
+                            <OpenModalButton
+                                buttonText="edit"
+                                modalComponent={<ProductEditFormPage product={product} />}
+                            />
+                        </div>
+                    </div>
+                ) : null}</div>
+
         </>
     )
 }
