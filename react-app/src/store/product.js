@@ -1,5 +1,6 @@
 const ALL_PRODUCTS = '/products/ALL_PRODUCTS'
 const ONE_PRODUCT = '/products/ONE_PRODUCT'
+const RESET_ONE = '/products/RESET_ONE'
 const MY_PRODUCTS = '/products/MY_PRODUCTS'
 const ADD_PRODUCT = '/products/ADD_PRODUCT'
 const REMOVE_PRODUCT = '/products/REMOVE_PRODUCT'
@@ -20,6 +21,10 @@ const oneProduct = (product) => ({
 	type: ONE_PRODUCT,
 	product,
 });
+
+export const resetProd = () => ({
+	type: RESET_ONE
+})
 
 const myProducts = (products) => ({
 	type: MY_PRODUCTS,
@@ -228,6 +233,9 @@ export default function productsReducer(state = initialState, action) {
 		case REMOVE_PRODUCT:
 			delete newState[action.id]
 			// delete newState.myProducts
+			return newState
+		case RESET_ONE:
+			delete newState.oneProduct
 			return newState
 		case REMOVE_CAT:
 			const prod = action.product

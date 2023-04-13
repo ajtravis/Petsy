@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { thunkMyproducts } from '../../store/product';
+import { thunkMyproducts, resetProd } from '../../store/product';
 import ProductCard from '../ProductCard';
 
 
@@ -12,6 +12,7 @@ export default function MyProducts() {
     // const allProducts = useSelector(state => state.products)
 
     useEffect(() => {
+        dispatch(resetProd())
         dispatch(thunkMyproducts());
     }, [dispatch]);
     // const productList = Object.values(allProducts)

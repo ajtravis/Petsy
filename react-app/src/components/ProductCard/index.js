@@ -1,4 +1,4 @@
-import { thunkDeleteProduct, thunkMyproducts, thunkAllproducts, thunkOneProduct } from "../../store/product"
+import { thunkDeleteProduct, thunkMyproducts, thunkAllproducts, thunkOneProduct, resetProd } from "../../store/product"
 import { thunkMyCart, thunkDeleteItem } from "../../store/cart"
 import ProductEditFormPage from "../ProductEditForm"
 import OpenModalButton from "../OpenModalButton"
@@ -34,8 +34,9 @@ export default function ProductCard({ product, location }) {
         history.push(`products/${product.id}/edit`)
     }
 
-    const handleClick = () => {
-        history.push(`products/${product.id}`)
+    const handleClick = async () => {
+        await dispatch(resetProd())
+        await history.push(`products/${product.id}`)
     }
     return (
         <>

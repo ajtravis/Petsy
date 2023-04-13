@@ -58,15 +58,19 @@ function ProductEditFormPage(props) {
   const handleClick = async (prodId, catId) => {
     // e.preventDefault()
     // if(cat === null) throw new Error("You must select a category first")
+    if (!catId) {
+      window.alert("no category selected")
+      return
+    }
     const data = await dispatch(thunkSetCategory(prodId, catId))
     setProduct(data)
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(thunkEditProduct({ name, price, description, image }, product?.id));
-    if (data.errors) {
-      setErrors(data.errors)
+    if (data?.errors) {
+      setErrors(data?.errors)
     } else {
       // if (cat1) dispatch(thunkSetCategory(data.id, cat1))
       // if (cat2) dispatch(thunkSetCategory(data.id, cat2))
@@ -85,14 +89,19 @@ function ProductEditFormPage(props) {
   return (
     <div>
       <form className='product-form' onSubmit={handleSubmit}>
-        <h2>edit product details</h2>
+        <ul>
+          {errors ? errors.map((error, idx) => (
+            <li className="err" key={idx}>{error}</li>
+          )) : null}
+        </ul>
+        <h2>edit {product?.name}</h2>
         <label>
           Product Name
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+          // required
           />
         </label>
         <label>
@@ -103,7 +112,7 @@ function ProductEditFormPage(props) {
             step={0.01}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            required
+          // required
           />
         </label>
         <label>
@@ -112,7 +121,7 @@ function ProductEditFormPage(props) {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+          // required
           />
         </label>
         <label>
@@ -121,10 +130,10 @@ function ProductEditFormPage(props) {
             type="text"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            required
+          // required
           />
         </label>
-        <button type="submit">Update Info</button>
+
         {/* <div>select up to 3 categories</div>
         <div className="checkbox-container">
           {
@@ -155,25 +164,8 @@ function ProductEditFormPage(props) {
           }</div> */}
 
 
-        <h3 id="procat-header" >categories:</h3>
-        <form id="addCatForm">
-          <div>select a category to add:</div>
-            <select
-              defaultValue={null}
-              onChange={(e) => {setNewCatId(e.target.value)}}
-              required
-            >
-              <option value={null}>
-                none
-              </option>
-              {selection?.map(cat =>
-                <option value={cat.id}>
-                  {cat.category}
-                </option>)}
-            </select>
+        <h3 id="procat-header" >product categories:</h3>
 
-            <div id="addCat" onClick={() => handleClick(product?.id, newCatId)}>add category</div>
-          </form>
         <div className="cat-container">
           {prodCats.length ? prodCats.map(cat =>
             <div className="cat-tools">
@@ -184,9 +176,25 @@ function ProductEditFormPage(props) {
             </div>
           ) : null}
           {/* <AddCategory product={product}/> */}
-
         </div>
-
+        <form id="addCatForm">
+          <div id="cat-ins">select a category to add:</div>
+          <select
+            defaultValue={null}
+            onChange={(e) => { setNewCatId(e.target.value) }}
+            required
+          >
+            <option value={null}>
+              none
+            </option>
+            {selection?.map(cat =>
+              <option value={cat.id}>
+                {cat.category}
+              </option>)}
+          </select>
+          <div id="addCat" onClick={() => handleClick(product?.id, newCatId)}>add category</div>
+        </form>
+        <button type="submit">Update Info</button>
       </form>
     </div>
   );

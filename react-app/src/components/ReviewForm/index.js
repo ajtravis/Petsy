@@ -18,24 +18,28 @@ export default function ReviewForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-            const data = await dispatch(thunkCreateReview({review, rating}, product?.id));
-            if (data) {
-              setErrors(data)
-            } else {
-                dispatch(thunkProductReviews(product?.id))
-                dispatch(thunkOneProduct(product?.id))
-                closeModal();
-            }
-      };
+        const data = await dispatch(thunkCreateReview({ review, rating }, product?.id));
+        if (data.errors) {
+            setErrors(data.errors)
+        } else {
+            dispatch(thunkProductReviews(product?.id))
+            dispatch(thunkOneProduct(product?.id))
+            closeModal();
+        }
+    };
 
     const changeStars = (val) => {
         setRating(val)
     }
 
-    return(
+    return (
         <div>
-
             <form className="revForm" onSubmit={handleSubmit}>
+                <ul>
+                    {errors ? errors.map((error, idx) => (
+                        <li className="err" key={idx}>{error}</li>
+                    )) : null}
+                </ul>
                 <h4>write a review</h4>
                 <ReactStars
                     count={5}
@@ -48,7 +52,7 @@ export default function ReviewForm() {
                 <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    required
+                    // required
                 />
 
                 <button type="submit">Create Review</button>
