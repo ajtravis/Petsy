@@ -10,6 +10,10 @@
     background-color: rgba(34, 34, 34, 0.9);
 }
 
+h2{
+    color: rgb(241, 100, 30);
+}
+
 .product-form > label > input {
     width: 300px;
     height: 90%;
@@ -112,8 +116,8 @@
 #addCat{
     border-radius: 7px;
     border: none;
-    background: rgb(20, 20, 30);
-    color: #E2DFD2;
+    background: ivory;
+    color: black;
     cursor: pointer;
     padding:4px;
     margin: 5px;
@@ -128,8 +132,9 @@
 #addCatForm{
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     align-items: center;
+    margin-bottom: 20px;
 }
 
 #procat-header{
@@ -159,4 +164,8 @@ input.checkCat{
 label.chosen {
     background-color: ivory;
     color: rgb(241, 100, 30);
+}
+
+#cat-ins{
+    color: ivory;
 }
