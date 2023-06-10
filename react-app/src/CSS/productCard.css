@@ -2,7 +2,10 @@
     cursor: pointer;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* .card-image:hover{
@@ -18,6 +21,7 @@
 .card-header{
     display: flex;
     justify-content: center;
+    margin-top: auto;
 }
 
 .prod-head{
@@ -28,6 +32,11 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    background-color: black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .owner-buttons > *{
@@ -47,16 +56,23 @@
 .card{
     color:ivory;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     /* border-radius: 40px; */
     object-fit: contain;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image > img{
+    /* height: auto;
+    width: 100%;
+    max-width: 100%; */
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 
 }
 
-img{
-    object-fit: contain;
-    width:100%;
-    height:100%;
-    border-radius: 20%;
-    /* border-top-right-radius: 10px;
-    border-top-left-radius: 10px; */
-}
