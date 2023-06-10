@@ -2,7 +2,7 @@
     cursor: pointer;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,13 +26,17 @@
 
 .prod-head{
     padding:10px;
-    color: black;
 }
 
 .owner-buttons{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    background-color: black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .owner-buttons > *{
@@ -60,8 +64,15 @@
     flex-direction: column;
 }
 
-img{
-    height: auto;
+.card-image > img{
+    /* height: auto;
     width: 100%;
-    max-width: 100%;
+    max-width: 100%; */
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
 }
+

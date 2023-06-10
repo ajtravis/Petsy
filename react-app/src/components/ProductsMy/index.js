@@ -24,8 +24,8 @@ export default function MyProducts() {
             <div className='card-gallery'>
                 {myProducts?.length ? myProducts.map(product =>
                     <div className='card-outer'>
-                    <div className='card-container'>
-                            <ProductCard product={product} />
+                    <div className='card-container owned'>
+                            <ProductCard product={product} location={'my-products'}/>
                     </div>
                     </div>
                 ) :
