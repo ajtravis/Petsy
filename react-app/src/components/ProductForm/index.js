@@ -46,7 +46,6 @@ function ProductFormPage() {
 
     // const data = await dispatch(thunkCreateProduct({ name, price, description, image }));
     const data = await dispatch(thunkCreateProduct(formData));
-    console.log("data", data)
 
     setName('')
     setImage('')

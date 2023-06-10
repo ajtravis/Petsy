@@ -55,7 +55,6 @@ def add_product():
         image = form.data['image']
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print("img!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", upload)
         if "url" not in upload:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 402
 
