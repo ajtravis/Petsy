@@ -3,6 +3,9 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* .card-image:hover{
@@ -18,10 +21,12 @@
 .card-header{
     display: flex;
     justify-content: center;
+    margin-top: auto;
 }
 
 .prod-head{
     padding:10px;
+    color: black;
 }
 
 .owner-buttons{
@@ -47,16 +52,16 @@
 .card{
     color:ivory;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     /* border-radius: 40px; */
     object-fit: contain;
-
+    display: flex;
+    flex-direction: column;
 }
 
 img{
-    object-fit: contain;
-    width:100%;
-    height:100%;
-    border-radius: 20%;
-    /* border-top-right-radius: 10px;
-    border-top-left-radius: 10px; */
+    height: auto;
+    width: 100%;
+    max-width: 100%;
 }

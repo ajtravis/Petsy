@@ -102,13 +102,16 @@ export const thunkMyproducts = () => async (dispatch) => {
 }
 
 export const thunkCreateProduct = (form) => async (dispatch) => {
-	// console.log(form)
+	console.log("store data", form)
 	const response = await fetch('/api/products/new', {
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(form)
+		// headers: { "Content-Type": "application/json" },
+		// headers: { 'Content-Type': 'multipart/form-data', 'Accept': 'application/json' },
+		// body: JSON.stringify(form)
+		body: form
+
 	})
-	// console.log(response, 'this is respond from backend')
+	console.log(response, 'this is respond from backend')
 	if (response.ok) {
 		const data = await response.json();
 		// console.log(data, '!!just came from backend')
@@ -240,12 +243,12 @@ export default function productsReducer(state = initialState, action) {
 		case REMOVE_CAT:
 			const prod = action.product
 			newState[prod.id] = prod
-			newState.myProducts[prod.id] = prod
+			if(newState.myProducts) {newState.myProducts[prod.id] = prod}
 			return newState
 		case SET_CAT:
 			const p = action.product
 			newState[p.id] = p
-			newState.myProducts[p.id] = p
+			if(newState.myProducts) {newState.myProducts[p.id] = p}
 			return newState
         default:
             return state;
