@@ -6,6 +6,7 @@
    width: 100%;
    height: auto;
    margin-top: 0.5em;
+   margin-bottom: 5em;;
 }
 
 .card-container{
@@ -90,7 +91,7 @@
     background-color: ivory;
 }
 
-.card-outer > .owned{
+.card-outer                                                                                                                                                                                  > .owned{
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
