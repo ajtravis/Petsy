@@ -17,9 +17,10 @@
   border-bottom: 2px solid rgba(128, 128, 128, 0.3);
   height: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background-image: url("https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif");
+  background-image: url("https://thumbs.gfycat.com/ThoroughUnnaturalAlbacoretuna-size_restricted.gif") ;
+
   background-color: white;
   background-size: contain;
 }
@@ -30,7 +31,7 @@
   font-family: 'Lora', serif;
   font-weight: bold;
   cursor: pointer;
- 
+
 
 }
 
@@ -41,11 +42,13 @@
 .nav-left{
   display: flex;
   justify-content:space-evenly;
+  padding-left: 8vw;
 }
 
 .nav-right{
   display: flex;
   justify-content: space-between;
+  padding-right: 2vw;
 
 }
 
