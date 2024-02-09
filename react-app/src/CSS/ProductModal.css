@@ -7,7 +7,7 @@
     justify-content: baseline;
     border: solid 0px rgba(0, 0, 0, .5);
     border-radius: 20px;
-    background-color: rgba(34, 34, 34, 0.9);
+    background-color: rgba(34, 34, 34, 0.8);
 }
 
 h2{
@@ -29,7 +29,7 @@ h2{
     background: rgb(241, 100, 30);
     color: ivory;
     margin-top: auto;
-    height: 50px;;
+    height: 50px;
     cursor: pointer;
     width:300px;
     margin-bottom: 10px;
@@ -70,7 +70,7 @@ h2{
     margin-top: 20px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 5px #696969;
-    padding: 20px;
+    padding: 18px;
 }
 
 .checkbox-container > label{
