@@ -71,6 +71,11 @@
   color: rgb(241, 100, 30);
 }
 
+.head:hover{
+  transform: scale(1.1);
+  
+}
+
 .profile-dropdown > li{
   list-style:none;
   display: block;
