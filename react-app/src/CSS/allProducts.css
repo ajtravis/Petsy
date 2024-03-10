@@ -48,7 +48,7 @@
 
 #root{
     background-color: rgba(0,0,0, 0.8);
-    
+
 }
 
 #mypage{
@@ -85,11 +85,12 @@
 
 .category-button:hover{
     background-color: rgba(241, 100, 30, 0.5);
+    
 }
 
 .filter > span.current{
     color: rgba(241, 100, 30);
-    background-color: ivory;
+    background-color: rgba(255, 255, 240, 0.846);
 }
 
 .card-outer                                                                                                                                                                                  > .owned{
