@@ -18,7 +18,7 @@ function Navigation({ isLoaded, num }){
 	useEffect(() => {
         dispatch(thunkMyCart());
 		dispatch(thunkAllCategories())
-    }, [dispatch]);
+    }, [dispatch, sessionUser]);
 
 
 	const handleClick = () => {
@@ -42,7 +42,7 @@ function Navigation({ isLoaded, num }){
 			{isLoaded && (
 				<div className='nav-right'>
 					<ProfileButton user={sessionUser} />
-					<i onClick={cartClick} class="head fa-solid fa-cart-shopping fa-3x button badge" value={Object.values(cartItems)?.length}></i>
+					<i onClick={cartClick} class="head fa-solid fa-cart-shopping fa-3x button badge" value={sessionUser? Object.values(cartItems)?.length : 0}></i>
 				</div>
 			)}
 		</div>
